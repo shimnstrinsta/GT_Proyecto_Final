@@ -1,0 +1,95 @@
+/* Estilos básicos y centrado del contenido */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+  
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+  
+  /* Estilo de la tarjeta (card) */
+.login-card {
+    background-color: white;
+    padding: 20px 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+}
+  
+h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+}
+  
+  /* Estilos para etiquetas e inputs */
+label {
+    display: block;
+    margin-bottom: 5px;
+    text-align: left;
+    font-size: 14px;
+    color: #555;
+}
+  
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+  
+  /* Estilos para el botón de ingresar */
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+  
+button:hover {
+    background-color: #45a049;
+}
+  
+  /* Agregar un poco de espacio debajo del último input */
+form {
+    margin-bottom: 10px;
+}
+  
+
+/* Estilos para el contenedor de checkboxes */
+.checkbox-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+}
+  
+.checkbox-container label {
+    font-size: 14px;
+    color: #555;
+    display: flex;
+    align-items: center;
+}
+  
+.checkbox-container input[type="checkbox"] {
+    margin-right: 5px;
+    transform: scale(1.5); /* Aumenta el tamaño del checkbox */
+}
