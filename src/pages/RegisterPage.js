@@ -1,18 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import LogInForm from '../components/LogInForm';
+import RegisterForm from '../components/RegisterForm';
 import '../assets/styles/login_style.css'
 
 
-function LoginPage() {
+function RegisterPage() {
   return (
     <div className='login-container'>
       <div className='login-card'>        
-        <LogInForm />
-        <p>¿No tenés cuenta? <Link to="/register">Regístrate</Link></p>
+        <RegisterForm />
+        <p>¿Ya tenés una cuenta? <Link to="/">Inicia sesión</Link></p>
       </div>
     </div>
   );
 }
 
-export default LoginPage;
+export default RegisterPage;
