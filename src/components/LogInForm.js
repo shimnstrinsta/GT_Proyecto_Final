@@ -1,10 +1,10 @@
 // LogInForm.js
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../assets/styles/login_style.css'
 import { authService } from '../services/AuthService';
+import { userContext } from '../context/UserContext';
 
-// Definimos la función handleLogInSubmit (aunque aún no está implementada)
 
 function LogInForm() {
 
@@ -13,6 +13,7 @@ function LogInForm() {
   const [errorMessage, setErrorMessage] = useState("")
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
+  const {login} = useContext(userContext);
 
   const handleLogInSubmit = (event) => {
     setLoading(true)
@@ -25,7 +26,8 @@ function LogInForm() {
       setLoading(false)
       if (response.success){
         setErrorMessage("")
-        navigate("/home")
+        login(email);
+        navigate("/home");
       }
       else{
         setErrorMessage(response.message)
@@ -39,6 +41,7 @@ function LogInForm() {
   
 
   return (
+    
     <div>
       <h1>Iniciar Sesión</h1>      
       <form onSubmit={handleLogInSubmit}>

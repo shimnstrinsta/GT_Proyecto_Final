@@ -4,7 +4,7 @@ import Routing from './routing/Routing'
 function App() {
   return (
       <div className="app">
-          <Routing />
+        <Routing />
       </div>
   );
 }

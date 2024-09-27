@@ -1,3 +1,5 @@
+
+
 export const authService = {
     login: (email, password) => {
       return fetch("https://jsonplaceholder.typicode.com/users")
@@ -5,8 +7,8 @@ export const authService = {
         .then(users => {
           const user = users.find(u => u.email === email);
           const authPassword = "bautiteamo"; // Contraseña fija para autenticación
-  
           if (user && authPassword === password) {            
+
             return { success: true, email: user.email, name: user.name };
           } else {            
             return { success: false, message: "Error: Credenciales incorrecta" };
