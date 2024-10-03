@@ -49,7 +49,7 @@ export default function Header() {
         <Toolbar disableGutters className = 'container_items'>          
           <Link to="/home"><Image src={logo} size='small' style={{ height: '100px' }}/></Link>
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
+            <Tooltip title="Abrir configuración">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>                                                  
                   <Avatar alt="Remy Sharp" src="https://scontent.faep22-1.fna.fbcdn.net/v/t39.30808-6/246130660_10222624843502271_4081528055984388244_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=a5f93a&_nc_ohc=N16FntRuB7IQ7kNvgHcyjDN&_nc_ht=scontent.faep22-1.fna&_nc_gid=AdlLcfUu64Q8n_7zIQ3DZNm&oh=00_AYDozXSzcRuYhD-FgIPkI_y6_7ULTzv3nkumXlJPb17NrA&oe=66FC6763" />                  
               </IconButton>

@@ -117,7 +117,7 @@ export default function Home() {
             <Typography variant="body2" sx={{ color: 'text.secondary' }}>
               Ingresa nuevas horas de trabajo
             </Typography>
-            <button className='button_item_select' onClick={() => navigate("/")}>Ingresar</button>
+            <button className='button_item_select' onClick={() => navigate("/insert-hour")}>Ingresar</button>
           </CardContent>
         </CardActionArea>
       </Card>
