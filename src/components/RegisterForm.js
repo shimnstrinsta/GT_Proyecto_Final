@@ -6,32 +6,20 @@ import { useNavigate } from 'react-router-dom';
 
 
 
-function RegisterForm() {
-  // Estado para manejar el checkbox seleccionado
-  const [selectedRole, setSelectedRole] = useState('');
+function RegisterForm() {  
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [errorMessage, setErrorMessage] = useState("")
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
 
-  const handleCheckboxChange = (event) => {
-    const { id } = event.target;
-    setSelectedRole(id);
-  };
 
   const  handleRegisterSubmit = (event) => {
     event.preventDefault();
-
-    if (selectedRole === ""){
-      setErrorMessage("Pelotudooooooooo seleccioná algún rol")
-    }
-    else{
-      console.log("Formulario de registro enviado")
+  
       setLoading(true)
-      setTimeout(9999);
-      console.log(selectedRole)
-      authService.register(email,password,selectedRole)
+      setTimeout(9999);      
+      authService.register(email,password)
       .then(response =>{
         setLoading(false)
         if (response.success){
@@ -45,7 +33,7 @@ function RegisterForm() {
         setLoading(false)
         setErrorMessage(error.message)
       })
-    }
+    
    
   }
 
@@ -61,7 +49,7 @@ function RegisterForm() {
           required 
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          onInvalid={(e) => setErrorMessage("pelotudoooooooooo poné bien el email")}
+          onInvalid={(e) => setErrorMessage("Email inválido")}
 
         />
         <label htmlFor="password">Contraseña:</label>
@@ -72,35 +60,9 @@ function RegisterForm() {
           required 
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          onInvalid={(e) => setErrorMessage("pelotudoooooooooo poné bien la contraseña")}
+          onInvalid={(e) => setErrorMessage("Contraseña inválida")}
 
         />
-        <div className="checkbox-container">
-          <label htmlFor="supervisor">
-           
-            Supervisor
-          </label>
-          <input
-              type="checkbox"
-              id="supervisor"
-              name="role"
-              checked={selectedRole === 'supervisor'}
-              value={selectedRole}
-              onChange={handleCheckboxChange}
-            />
-          <label htmlFor="empleado">
-           
-            Empleado
-          </label>
-          <input
-              type="checkbox"
-              id="empleado"
-              name="role"
-              value={selectedRole}
-              checked={selectedRole === 'empleado'}
-              onChange={handleCheckboxChange}
-            />
-        </div>
         <button type="submit" disabled = {loading}>
           {loading? "Cargando..." : "Registrarse"}
         </button>

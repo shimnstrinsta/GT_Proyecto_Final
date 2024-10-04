@@ -5,16 +5,15 @@ import RegisterPage from '../pages/RegisterPage';
 import HomePage from '../pages/HomePage';
 
 export default function Routing() {
-  return (
+  return (    
     <Router>
         <Routes>
           {/* Cambiar el uso de `component` a `element` */}
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/" element={<LoginPage />} /> 
-          <Route path="/home" element={<HomePage />} /> 
+          <Route exact path="/register" element={<RegisterPage />} />
+          <Route exact path="/" element={<LoginPage />} /> 
+          <Route exact path="/home" element={<HomePage />} /> 
 
         </Routes>
-    </Router>
-   
+    </Router>    
   )
 }
