@@ -1,8 +1,7 @@
-.container{
+
+body,html{
     margin:0;
     padding-top: 80vh; 
-    background-color: blue;
-}
 
 .container_item{    
     margin : 1%;    

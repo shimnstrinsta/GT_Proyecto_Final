@@ -16,6 +16,18 @@ import { useNavigate } from 'react-router-dom';
 import '../assets/styles/home.css'
 
 export default function Home() {
+  const navigate = useNavigate();  
+  const { isAuthenticated } = useContext(userContext);
+  const [mostWorkedProject,setProject] = useState("JARVIS");
+  const [mostWorkedDay,setDay] = useState("Viernes");
+
+  useEffect (() => {
+    if(!isAuthenticated){
+      navigate("/");
+      return () => {};
+    }
+  },[isAuthenticated]);
+  
   const navigate = useNavigate();    
   const [mostWorkedProject,setProject] = useState("JARVIS");
   const [mostWorkedDay,setDay] = useState("Viernes");
@@ -98,7 +110,7 @@ export default function Home() {
     ],
   };
 
-  
+ 
   return (    
       <div>
       <Header/>
@@ -121,7 +133,7 @@ export default function Home() {
             <Typography variant="body2" sx={{ color: 'text.secondary' }}>
               Ingresa nuevas horas de trabajo
             </Typography>
-            <button className='button_item_select' onClick={() => navigate("/")}>Ingresar</button>
+            <button className='button_item_select' onClick={() => navigate("/insert-hour")}>Ingresar</button>
           </CardContent>
         </CardActionArea>
       </Card>
