@@ -3,7 +3,6 @@ import React, {useContext, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../assets/styles/login_style.css'
 import { authService } from '../services/AuthService';
-import { userContext } from '../context/UserContext';
 
 
 function LogInForm() {
@@ -12,8 +11,7 @@ function LogInForm() {
   const [password, setPassword] = useState("")
   const [errorMessage, setErrorMessage] = useState("")
   const [loading, setLoading] = useState(false)
-  const navigate = useNavigate()
-  const {login} = useContext(userContext);
+  const navigate = useNavigate()  
 
   const handleLogInSubmit = (event) => {
     setLoading(true)
@@ -25,8 +23,7 @@ function LogInForm() {
     .then(response =>{
       setLoading(false)
       if (response.success){
-        setErrorMessage("")
-        login(email);
+        setErrorMessage("")        
         navigate("/home");
       }
       else{

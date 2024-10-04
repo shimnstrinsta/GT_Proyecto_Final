@@ -1,9 +1,29 @@
-.container_items{    
+
+.header_container_items{    
     display: flex;
     justify-content: space-between;    
+    background-color: yellow;
 }
 
-.avatar{
-    width: 200px;
-    
+.header_user{
+    display: flex;
+    flex-direction: row;
+    color: white;
+    background-color: red;
+}
+
+@media (max-width: 900px) {
+    .header_user{
+        flex-direction: column-reverse;
+        
+    }
+
+}
+
+@media (max-width: 400px) {
+    .header_user p{
+        display: none;
+        
+    }
+
 }

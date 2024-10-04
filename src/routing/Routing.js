@@ -4,11 +4,10 @@ import LoginPage from '../pages/LoginPage';
 import RegisterPage from '../pages/RegisterPage';
 import HomePage from '../pages/HomePage';
 import InsertPage from '../pages/InsertHourPage'
-import {UserProvider} from '../context/UserContext';
+
 
 export default function Routing() {
-  return (
-    <UserProvider>
+  return (    
     <Router>
         <Routes>
           {/* Cambiar el uso de `component` a `element` */}
@@ -19,6 +18,8 @@ export default function Routing() {
 
         </Routes>
     </Router>
-    </UserProvider>
+
+        </Routes>
+    </Router>    
   )
 }
