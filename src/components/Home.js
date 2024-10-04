@@ -12,24 +12,22 @@ import CardActions from '@mui/material/CardActions';
 import Chart from 'chart.js/auto';
 import { Bar, Pie } from 'react-chartjs-2';
 import { useNavigate } from 'react-router-dom';
+import { userContext } from '../context/UserContext';
 
 import '../assets/styles/home.css'
 
 export default function Home() {
-  const navigate = useNavigate();    
+  const navigate = useNavigate();  
+  const { isAuthenticated } = useContext(userContext);
   const [mostWorkedProject,setProject] = useState("JARVIS");
   const [mostWorkedDay,setDay] = useState("Viernes");
-  const [user, setUser] = useState(() =>{
-    return localStorage.getItem("user");
-  })
-
 
   useEffect (() => {
-    console.log("SI: "+user);
-    if(!user){
-      navigate("/");      
+    if(!isAuthenticated){
+      navigate("/");
+      return () => {};
     }
-  },[user]);
+  },[isAuthenticated]);
 
   // Horas
   const data = {
@@ -99,12 +97,10 @@ export default function Home() {
   };
 
   
-  return (    
-      <div>
+  return (
+    <div>      
       <Header/>
-      
-      <div className='container'>      
-      
+
       <div className='container_item' id='container_logo'>
         <Image src={logo}/>  
       </div>
@@ -121,7 +117,7 @@ export default function Home() {
             <Typography variant="body2" sx={{ color: 'text.secondary' }}>
               Ingresa nuevas horas de trabajo
             </Typography>
-            <button className='button_item_select' onClick={() => navigate("/")}>Ingresar</button>
+            <button className='button_item_select' onClick={() => navigate("/insert-hour")}>Ingresar</button>
           </CardContent>
         </CardActionArea>
       </Card>
@@ -169,7 +165,6 @@ export default function Home() {
         </div>
         <div className='content_graph'><Bar data={dataProjects} options={optionsProjects} />;</div>        
       </div>
-    </div>
     </div>
   );
 }
