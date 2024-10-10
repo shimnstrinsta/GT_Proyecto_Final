@@ -8,7 +8,7 @@ export const authService = {
           const user = users.find(u => u.email === email);
           const authPassword = "bautiteamo"; // Contraseña fija para autenticación
           if (user && authPassword === password) {            
-
+            localStorage.setItem("user",email);
             return { success: true, email: user.email, name: user.name };
           } else {            
             return { success: false, message: "Error: Credenciales incorrecta" };
@@ -27,6 +27,7 @@ export const authService = {
           if (email === "hola@hola.com") {
             return { success: false, message: "El email ya está ingresado" };
           }
+          localStorage.setItem("user",email);
           return { success: true, message: "¡Registro exitoso!" };
         })
         .catch(error => {          

@@ -1,4 +1,4 @@
-import React, { useState,useContext,useEffect } from 'react';
+import React, { useState,useEffect } from 'react';
 import Header from './Header'
 import logo from "../img/logoTransparent.png"
 import { GridColumn, Grid,Image } from 'semantic-ui-react';
@@ -12,22 +12,27 @@ import CardActions from '@mui/material/CardActions';
 import Chart from 'chart.js/auto';
 import { Bar, Pie } from 'react-chartjs-2';
 import { useNavigate } from 'react-router-dom';
-import { userContext } from '../context/UserContext';
+
+
 
 import '../assets/styles/home.css'
+import '../assets/styles/main.css'
 
 export default function Home() {
-  const navigate = useNavigate();  
-  const { isAuthenticated } = useContext(userContext);
+  const navigate = useNavigate();    
   const [mostWorkedProject,setProject] = useState("JARVIS");
   const [mostWorkedDay,setDay] = useState("Viernes");
+  const [user, setUser] = useState(() =>{
+    return localStorage.getItem("user");
+  })
+
 
   useEffect (() => {
-    if(!isAuthenticated){
-      navigate("/");
-      return () => {};
+    console.log("SI: "+user);
+    if(!user){
+      navigate("/");      
     }
-  },[isAuthenticated]);
+  },[user]);
 
   // Horas
   const data = {
@@ -96,19 +101,20 @@ export default function Home() {
     ],
   };
 
-  
-  return (
-    <div>      
+ 
+  return (    
+      <div>
       <Header/>
-
+      
+      <div className='container'>      
+      
       <div className='container_item' id='container_logo'>
         <Image src={logo}/>  
       </div>
-
+    
       <div className='container_item' id= 'button_container'>
 
       <Card sx={{ maxWidth: 400 }} className='button_item'>
-        <CardActionArea>
         <CardMedia component="img" height="170" image="https://cdn.pixabay.com/photo/2016/11/29/07/10/hand-1868015_640.jpg" alt="registrar horas"/>
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
@@ -117,13 +123,11 @@ export default function Home() {
             <Typography variant="body2" sx={{ color: 'text.secondary' }}>
               Ingresa nuevas horas de trabajo
             </Typography>
-            <button className='button_item_select' onClick={() => navigate("/insert-hour")}>Ingresar</button>
+            <button className='button_item_select' onClick={() => navigate("/hour/insert")}>Ingresar</button>
           </CardContent>
-        </CardActionArea>
       </Card>
 
       <Card sx={{ maxWidth: 400 }} className='button_item'>
-        <CardActionArea>
         <CardMedia component="img" height="170" image="https://png.pngtree.com/thumb_back/fh260/background/20220103/pngtree-time-sheet-timesheet-text-employee-photo-image_2644421.jpg" alt="consultar horas"/>
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
@@ -132,9 +136,8 @@ export default function Home() {
             <Typography variant="body2" sx={{ color: 'text.secondary' }}>
               Revisa tu historial de horas trabajadas
             </Typography>
-            <button className='button_item_select' onClick={() => navigate("/")}>Buscar</button>
+            <button className='button_item_select' onClick={() => navigate("/hour")}>Buscar</button>
           </CardContent>
-        </CardActionArea>
       </Card>
 
       </div>
@@ -165,6 +168,7 @@ export default function Home() {
         </div>
         <div className='content_graph'><Bar data={dataProjects} options={optionsProjects} />;</div>        
       </div>
+    </div>
     </div>
   );
 }
