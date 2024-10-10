@@ -1,10 +1,10 @@
-
 body,html{
     margin:0;
-    padding-top: 80vh; 
+    /* padding-top: 80vh; */
+}
 
 .container_item{    
-    margin : 1%;    
+    margin : 2% auto; 
     padding: 1%;
     padding-top: 3%;
     padding-bottom: 3%;
@@ -21,8 +21,8 @@ body,html{
 
 #container_logo{
     border:none;
-    margin-top: 40%;    
-    margin-bottom: 20%;    
+    margin-top: 40%;   
+    margin-bottom: 70%; 
 }
 
 #button_container{
@@ -33,14 +33,17 @@ body,html{
 }
 
 .button_item{
-    margin:20px;
-    flex:2;   
+    margin: 2rem 1rem; /* Márgenes más pequeños para mejorar el espaciado en pantallas más chicas */
+    flex-wrap: wrap;
+    flex: 1 1 300px; /* Se ajustan las cards para que mantengan una base de 300px pero se adapten */
+    max-width: 400px; /* Máximo tamaño de cada card */
+    min-width: 250px; /* Evitar que las cards se vuelvan muy pequeñas */
 }
 
-.button_item:hover{
+/*.button_item:hover{
     width: 20%;
     height: 20%;
-}
+}*/
 
 .content_container{
     display: flex;
@@ -61,11 +64,149 @@ body,html{
 }
 
 
+.footer_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2% 5%;
+    box-sizing: border-box;
+   
+}
+
+.footer_logo {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2em;
+}
+
+.footer_logo img {
+    width: 40vw;
+    max-width: 300px;
+    height: auto;
+}
+
+.footer_content {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.footer_links, .footer_contact {
+    flex: 1 1 200px;
+    margin: 1em;
+    text-align: center;
+    list-style: none;
+      
+}
+
+.footer_links h6, .footer_contact h6 {
+    font-size: 1.2em;
+    margin: 1.5em;
+}
+
+.footer_links ul, .footer_contact ul {
+    padding: 0;
+    list-style: inherit;
+}
+
+.footer_links ul li, .footer_contact ul li {
+    margin-bottom: 0.5em;
+   
+}
+
+.footer_contact ul li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer_contact ul li span {
+    margin-right: 0.5em;
+    font-size: 1.5em;
+    color: green;
+}
+
+.footer_contact ul li a {
+    color: inherit;
+    text-decoration: none;
+    font-size: 1.1rem;
+}
+
+.footer_copyright {
+    width: 100%;
+    text-align: center;
+    margin-top: 2em;
+    font-size: 0.9em;
+}
+
+.footer_links ul li a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+
+.footer_links ul li a:hover, .footer_contact ul li a:hover {
+    color: #2680f7;
+}
+
+.footer_contact ul {
+    list-style: none;
+    padding: 0;
+    margin: 15px 0;
+}
+
+.footer_contact ul li {
+    display: flex;
+    align-items: center; /* Alinea verticalmente los íconos y el texto */
+    justify-content: center; /* Alinea horizontalmente en dos columnas */
+    margin-bottom: 1rem; /* Espacio entre cada ítem */
+}
+
+.footer_contact ul li .icon {
+    margin-right: 1rem; /* Espacio entre el ícono y el texto */
+    font-size: 1rem; /* Tamaño del ícono */
+    color: green; /* Color del ícono */
+}
+
+.footer_contact ul li a {
+    color: inherit;
+    text-decoration: none;
+    font-size: 1.1rem; /* Tamaño del texto */
+    padding-left: 1%;
+}
+.footer_contact span {
+    color: inherit;
+    text-decoration: none;
+    font-size: 1.1rem; /* Tamaño del texto */
+    
+    padding-left: 1%;
+}
+
+ 
+
+
+/* Media queries para responsividad */
+@media (max-width: 900px) {
+    .footer_container {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+
 @media (max-width: 900px) {
     .content_container{
         flex-direction: column;
         
     }
+    #container_logo{
+        border:none;
+        margin-bottom: 480%;    
+    }
+    
 
 
     /* .content_graph,
