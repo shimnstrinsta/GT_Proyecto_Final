@@ -12,7 +12,7 @@ import CardActions from '@mui/material/CardActions';
 import Chart from 'chart.js/auto';
 import { Bar, Pie } from 'react-chartjs-2';
 import { useNavigate } from 'react-router-dom';
-
+import Footer from "../components/Footer.js"
 
 
 import '../assets/styles/home.css'
@@ -169,8 +169,8 @@ export default function Home() {
         <div className='content_graph'><Bar data={dataProjects} options={optionsProjects} />;</div>        
       </div>
     </div>
+    <Footer/>
     </div>
   );
 }
-
 

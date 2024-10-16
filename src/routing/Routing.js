@@ -14,7 +14,7 @@ export default function Routing() {
           <Route exact path="/register" element={<RegisterPage />} />
           <Route exact path="/" element={<LoginPage />} /> 
           <Route exact path="/home" element={<HomePage />} /> 
-          <Route exact path="/hour/insert" element={<InsertPage />} /> 
+          <Route exact path="/insert-hour" element={<InsertPage />} /> 
           <Route exact path="/hour" element={<ManageHourPage />} /> 
           
         </Routes>
