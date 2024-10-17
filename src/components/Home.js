@@ -1,7 +1,8 @@
-import React, { useState,useContext,useEffect } from 'react';
+import React, { useState,useEffect } from 'react';
 import Header from './Header'
+import Footer from './Footer'
 import logo from "../img/logoTransparent.png"
-import { GridColumn, Grid,Image } from 'semantic-ui-react';
+import { ListItem,  ListHeader,  ListContent,  List, GridColumn, Grid,Image } from 'semantic-ui-react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -14,20 +15,9 @@ import { Bar, Pie } from 'react-chartjs-2';
 import { useNavigate } from 'react-router-dom';
 
 import '../assets/styles/home.css'
+import '../assets/styles/main.css'
 
 export default function Home() {
-  const navigate = useNavigate();  
-  const { isAuthenticated } = useContext(userContext);
-  const [mostWorkedProject,setProject] = useState("JARVIS");
-  const [mostWorkedDay,setDay] = useState("Viernes");
-
-  useEffect (() => {
-    if(!isAuthenticated){
-      navigate("/");
-      return () => {};
-    }
-  },[isAuthenticated]);
-  
   const navigate = useNavigate();    
   const [mostWorkedProject,setProject] = useState("JARVIS");
   const [mostWorkedDay,setDay] = useState("Viernes");
@@ -42,6 +32,8 @@ export default function Home() {
       navigate("/");      
     }
   },[user]);
+
+  const actividades = ["Diseño", "Codificación", "Testeo"];
 
   // Horas
   const data = {
@@ -120,11 +112,10 @@ export default function Home() {
       <div className='container_item' id='container_logo'>
         <Image src={logo}/>  
       </div>
-
+    
       <div className='container_item' id= 'button_container'>
 
       <Card sx={{ maxWidth: 400 }} className='button_item'>
-        <CardActionArea>
         <CardMedia component="img" height="170" image="https://cdn.pixabay.com/photo/2016/11/29/07/10/hand-1868015_640.jpg" alt="registrar horas"/>
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
@@ -133,13 +124,11 @@ export default function Home() {
             <Typography variant="body2" sx={{ color: 'text.secondary' }}>
               Ingresa nuevas horas de trabajo
             </Typography>
-            <button className='button_item_select' onClick={() => navigate("/insert-hour")}>Ingresar</button>
+            <button className='button_item_select' onClick={() => navigate("/hour/insert")}>Ingresar</button>
           </CardContent>
-        </CardActionArea>
       </Card>
 
       <Card sx={{ maxWidth: 400 }} className='button_item'>
-        <CardActionArea>
         <CardMedia component="img" height="170" image="https://png.pngtree.com/thumb_back/fh260/background/20220103/pngtree-time-sheet-timesheet-text-employee-photo-image_2644421.jpg" alt="consultar horas"/>
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
@@ -148,9 +137,8 @@ export default function Home() {
             <Typography variant="body2" sx={{ color: 'text.secondary' }}>
               Revisa tu historial de horas trabajadas
             </Typography>
-            <button className='button_item_select' onClick={() => navigate("/")}>Buscar</button>
+            <button className='button_item_select' onClick={() => navigate("/hour")}>Buscar</button>
           </CardContent>
-        </CardActionArea>
       </Card>
 
       </div>
@@ -165,12 +153,17 @@ export default function Home() {
       <div className='container_item content_container'>        
         <div className='content_graph'><Pie data={dataTareas} id='pie'/></div>
         <div className='content_info'>
-          <h4>Has realizado las siguientes tareas</h4>
-          <ul>            
-            <li>Análisis</li>
-            <li>Diseño</li>
-            <li>Testeo</li>
-          </ul>
+          <h4>Has realizado las siguientes tareas</h4>           
+            <List animated verticalAlign='middle'>
+              {actividades.map((actividad,index) => (
+                <ListItem key={index}>
+                <ListContent>
+                  <ListHeader>{actividad}</ListHeader>
+                </ListContent>
+                </ListItem>
+              ))}
+
+            </List>
         </div>
       </div>
 
@@ -179,9 +172,10 @@ export default function Home() {
           <h4>Tu proyecto favorito es</h4>
           <h1>{mostWorkedProject}</h1>
         </div>
-        <div className='content_graph'><Bar data={dataProjects} options={optionsProjects} />;</div>        
+        <div className='content_graph'><Bar data={dataProjects} options={optionsProjects} /></div>        
       </div>
     </div>
+    <Footer/>
     </div>
   );
 }

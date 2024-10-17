@@ -4,7 +4,7 @@ import LoginPage from '../pages/LoginPage';
 import RegisterPage from '../pages/RegisterPage';
 import HomePage from '../pages/HomePage';
 import InsertPage from '../pages/InsertHourPage'
-
+import ManageHourPage from '../pages/ManageHourPage'
 
 export default function Routing() {
   return (    
@@ -14,12 +14,11 @@ export default function Routing() {
           <Route exact path="/register" element={<RegisterPage />} />
           <Route exact path="/" element={<LoginPage />} /> 
           <Route exact path="/home" element={<HomePage />} /> 
-          <Route exact path="/insert-hour" element={<InsertPage />} /> 
-
+          <Route exact path="/hour/insert" element={<InsertPage />} /> 
+          <Route exact path="/hour" element={<ManageHourPage />} /> 
+          
         </Routes>
     </Router>
-
-        </Routes>
-    </Router>    
+  
   )
 }
