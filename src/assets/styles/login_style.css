@@ -1,14 +1,4 @@
-/* Estilos básicos y centrado del contenido */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-}
-  
+
 .login-container {
     display: flex;
     justify-content: center;
@@ -17,7 +7,6 @@ body {
     width: 100%;
 }
   
-  /* Estilo de la tarjeta (card) */
 .login-card {
     background-color: white;
     padding: 20px 30px;
@@ -27,13 +16,13 @@ body {
     text-align: center;
 }
   
-h2 {
+.login-container h2 {
     margin-bottom: 20px;
     font-size: 24px;
     color: #333;
 }
   
-label {
+.login-container label {
     display: block;
     margin-bottom: 5px;
     text-align: left;
@@ -41,32 +30,12 @@ label {
     color: #555;
 }
   
-input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 16px;
-    box-sizing: border-box;
-}
   
-button {
-    width: 100%;
-    padding: 10px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
+.login-card input[type = "file"] {
+    color: #fff;
+    
 }
-  
-button:hover {
-    background-color: #45a049;
-}
-  
-  /* Agregar un poco de espacio debajo del último input */
+
 form {
     margin-bottom: 10px;
 }

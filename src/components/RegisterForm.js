@@ -63,6 +63,11 @@ function RegisterForm() {
           onInvalid={(e) => setErrorMessage("Contraseña inválida")}
 
         />
+
+        <input 
+          type='file'
+          
+        />
         <button type="submit" disabled = {loading}>
           {loading? "Cargando..." : "Registrarse"}
         </button>

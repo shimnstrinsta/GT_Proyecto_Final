@@ -1,21 +1,22 @@
+.container_items{    
+    display: flex;
+    justify-content: space-between;    
+}
 
 .header_container_items{    
     display: flex;
     justify-content: space-between;    
-    background-color: yellow;
 }
 
 .header_user{
     display: flex;
     flex-direction: row;
     color: white;
-    background-color: red;
 }
 
 @media (max-width: 900px) {
     .header_user{
         flex-direction: column-reverse;
-        
     }
 
 }
