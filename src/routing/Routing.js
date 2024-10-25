@@ -5,6 +5,8 @@ import RegisterPage from '../pages/RegisterPage';
 import HomePage from '../pages/HomePage';
 import InsertPage from '../pages/InsertHourPage'
 import ManageHourPage from '../pages/ManageHourPage'
+import UserAccount from '../pages/UserAccount'
+
 
 export default function Routing() {
   return (    
@@ -16,6 +18,7 @@ export default function Routing() {
           <Route exact path="/home" element={<HomePage />} /> 
           <Route exact path="/hour/insert" element={<InsertPage />} /> 
           <Route exact path="/hour" element={<ManageHourPage />} /> 
+          <Route exact path="/user" element={<UserAccount />} /> 
           
         </Routes>
     </Router>

@@ -38,6 +38,7 @@ export default function Header() {
   }
 
   const handleCloseUserMenu = () => {
+    navigate("/user")
     setAnchorElUser(null);
   };
 
