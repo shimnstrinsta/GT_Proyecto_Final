@@ -7,7 +7,6 @@ import InsertPage from '../pages/InsertHourPage'
 import ManageHourPage from '../pages/ManageHourPage'
 import UserAccount from '../pages/UserAccount'
 
-
 export default function Routing() {
   return (    
     <Router>
