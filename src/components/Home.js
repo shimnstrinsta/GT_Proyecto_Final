@@ -26,8 +26,7 @@ export default function Home() {
   })
 
 
-  useEffect (() => {
-    console.log("SI: "+user);
+  useEffect (() => {    
     if(!user){
       navigate("/");      
     }
