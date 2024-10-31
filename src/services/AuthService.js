@@ -1,12 +1,11 @@
-
-
 export const authService = {
     login: (email, password) => {
       return fetch(`http://localhost:3001/employee/${email}/${password}`)
         .then(response => response.json())
-        .then(user => {          
+        .then(user => {
+          console.log(user)
           if (user && user.email) {            
-            localStorage.setItem("user",email);
+            localStorage.setItem("user",user.email);
             localStorage.setItem("id_user",user.id_empleado);
             return { success: true, email: user.email, name: user.name };
           } else {            
@@ -18,15 +17,24 @@ export const authService = {
         });
     },
   
-    register: (email, password) => {
-      return fetch("https://jsonplaceholder.typicode.com/users")
-        .then(response => response.json())
-        .then(users => {          
-          if (email === "hola@hola.com") {
-            return { success: false, message: "El email ya está ingresado" };
+    register: (name, lastName, email, password) => {
+      return fetch(`http://localhost:3001/employee/${name}/${lastName}/${email}/${password}`, {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
           }
-          localStorage.setItem("user",email);
-          return { success: true, message: "¡Registro exitoso!" };
+      })
+        .then(response => response.json())
+        .then(employee => {
+          if (employee.success){
+            localStorage.setItem("user",employee.email);
+            localStorage.setItem("id_user",employee.id_empleado);
+            return { success: true, message: employee.message };
+
+          }
+          else{
+            return { success: false, message: "Error en el ingreso "+employee.message };
+          }
         })
         .catch(error => {          
           return { success: false, message: "Error de registro: " + error.message };
