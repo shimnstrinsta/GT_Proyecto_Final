@@ -25,6 +25,7 @@ export default function Home() {
     return localStorage.getItem("user");
   })
 
+
   useEffect (() => {    
     if(!user){
       navigate("/");      

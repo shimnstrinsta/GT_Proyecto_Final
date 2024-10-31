@@ -6,81 +6,73 @@ import { useNavigate } from 'react-router-dom';
 
 
 
-function RegisterForm() {
-  const [name, setName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
-  const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
+function RegisterForm() {  
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [errorMessage, setErrorMessage] = useState("")
+  const [loading, setLoading] = useState(false)
+  const navigate = useNavigate()
 
-  const handleRegisterSubmit = (event) => {
+
+  const  handleRegisterSubmit = (event) => {
     event.preventDefault();
-    setLoading(true);
-
-    authService.register(name, lastName, email, password)
-      .then(response => {
-        setLoading(false);
-        if (response.success) {
-          setErrorMessage("")        
-           
-          navigate("/home");
-        } else {
-          setErrorMessage(response.message);
+  
+      setLoading(true)
+      setTimeout(9999);      
+      authService.register(email,password)
+      .then(response =>{
+        setLoading(false)
+        if (response.success){
+          navigate("/home")
+        }
+        else{
+          setErrorMessage(response.message)
         }
       })
-      .catch(error => {
-        setLoading(false);
-        setErrorMessage(error.message);
-      });
-  };
+      .catch(error =>{
+        setLoading(false)
+        setErrorMessage(error.message)
+      })
+    
+   
+  }
 
   return (
     <div>
       <h1>Registrarse</h1>
       <form onSubmit={handleRegisterSubmit}>
-        <label htmlFor="name">Nombre:</label>
-        <input
-          type="text"
-          id="name"
-          name="name"
-          required
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        <label htmlFor="lastName">Apellido:</label>
-        <input
-          type="text"
-          id="lastName"
-          name="lastName"
-          required
-          value={lastName}
-          onChange={(e) => setLastName(e.target.value)}
-        />
-        <label htmlFor="email">Email</label>
-        <input
+        <label htmlFor="email">Email:</label>
+        <input 
+          type="email"
           id="email"
           name="email"
-          required
+          required 
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          onInvalid={(e) => setErrorMessage("Email inválido")}
+
         />
-        <label htmlFor="password">Contraseña</label>
-        <input
+        <label htmlFor="password">Contraseña:</label>
+        <input 
           type="password"
-          id="password"
-          name="password"
-          required
+          id="password" 
+          name="password" 
+          required 
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           onInvalid={(e) => setErrorMessage("Contraseña inválida")}
+
         />
 
-        <button type="submit" disabled={loading}>
-          {loading ? "Cargando..." : "Registrarse"}
+        <input 
+          type='file'
+          
+        />
+        <button type="submit" disabled = {loading}>
+          {loading? "Cargando..." : "Registrarse"}
         </button>
-        {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
+        {errorMessage && <p  style = {{color:"red"}} >{errorMessage}</p>}
+
       </form>
     </div>
   );
