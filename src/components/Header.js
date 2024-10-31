@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -33,6 +33,7 @@ export default function Header() {
 
   const handleLogout = () => {
     localStorage.removeItem("user");
+    localStorage.removeItem("id_user");
     navigate("/");
     setAnchorElUser(null);
   }
