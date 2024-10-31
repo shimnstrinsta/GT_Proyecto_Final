@@ -7,7 +7,7 @@ import { authService } from '../services/AuthService';
 
 function LogInForm() {
 
-  const [email, setEmail] = useState("")
+  const [credential, setCredential] = useState("")
   const [password, setPassword] = useState("")
   const [errorMessage, setErrorMessage] = useState("")
   const [loading, setLoading] = useState(false)
@@ -19,7 +19,7 @@ function LogInForm() {
 
     event.preventDefault(); // Evitar que el formulario se recargue    
 
-    authService.login(email,password)
+    authService.login(credential,password)
     .then(response =>{
       setLoading(false)
       if (response.success){
@@ -42,15 +42,15 @@ function LogInForm() {
     <div>
       <h1>Iniciar Sesión</h1>      
       <form onSubmit={handleLogInSubmit}>
-        <label htmlFor="email">Email:</label>
+        <label htmlFor="credential">Nombre o email:</label>
         <input 
-          type="email"
-          id="email"
-          name="email"
-          value = {email}
+          type="credential"
+          id="credential"
+          name="credential"
+          value = {credential}
           required
-          onChange={(e) => setEmail(e.target.value)}
-          onInvalid={(e) => setErrorMessage("Email inválido")}
+          onChange={(e) => setCredential(e.target.value)}
+          onInvalid={(e) => setErrorMessage("Credential inválido")}
           />
 
         <label htmlFor="password">Contraseña:</label>
