@@ -1,13 +1,13 @@
 const {Sequelize} = require("sequelize")
 
-const sequelize = new Sequelize("gtimesheet", "root", "12341234", { 
+const sequelize = new Sequelize("gtimesheet", "root", "fatay2006-2022", {
     host: "localhost",
     dialect: "mysql",
-    port: 3306,
+    port: 3306, // Puerto por defecto para MySQL
     logging: false,
     dialectOptions: {
         ssl: {
-            rejectUnauthorized: false
+            rejectUnauthorized: false // Cambia a false si no deseas verificar el certificado
         }
     }
 });

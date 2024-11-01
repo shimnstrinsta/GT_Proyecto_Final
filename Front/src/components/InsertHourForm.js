@@ -59,7 +59,7 @@ export default function InserHourForm() {
         .catch(error => {          
           return { success: false, message: "Error de insercion: " + error.message };
         });
-    },[])
+    },[proyects])
 
     useEffect(()=>{
         fetch(`http://localhost:3001/activity`)
@@ -68,7 +68,7 @@ export default function InserHourForm() {
             const activity_name = [];
 
             actividad.forEach(element => {
-                activity_name.unshift(element.nombre);
+                activity_name.unshift(element.actividad);
             });
 
             setActivities(activity_name)
@@ -76,7 +76,7 @@ export default function InserHourForm() {
         .catch(error => {          
           return { success: false, message: "Error de insercion: " + error.message };
         });
-    },[])
+    },[activities])
 
 
     return (

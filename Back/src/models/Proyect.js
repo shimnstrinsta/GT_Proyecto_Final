@@ -30,6 +30,10 @@ const Proyect = sequelize.define("Proyect", {
     timestamps: false
 })
 
+sequelize.sync()
+    .then(() => console.log("Tablas sincronizadas correctamente"))
+    .catch(error => console.error("Error al sincronizar las tablas:" + error, error));
+
 
 module.exports = Proyect;
 

@@ -8,14 +8,19 @@ const Activity = sequelize.define("Activity", {
         primaryKey: true,
         allowNull: false
     },
-    nombre: {
-        type: DataTypes.STRING,
+    actividad: {
+        type: DataTypes.TIME,
         allowNull: true
     }
 }, {    
     tableName: 'actividad',
     timestamps: false
 })
+
+sequelize.sync()
+    .then(() => console.log("Tablas sincronizadas correctamente"))
+    .catch(error => console.error("Error al sincronizar las tablas:" + error, error));
+
 
 module.exports = Activity;
 

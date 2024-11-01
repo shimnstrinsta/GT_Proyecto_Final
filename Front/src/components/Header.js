@@ -86,7 +86,7 @@ export default function Header() {
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                   {/*<Avatar alt="Remy Sharp" src="https://scontent-eze1-1.xx.fbcdn.net/v/t31.18172-8/12593697_965652153528159_2475054300731810535_o.jpg?_nc_cat=111&ccb=1-7&_nc_sid=53a332&_nc_ohc=rlKIf_jt2y0Q7kNvgFHdS1v&_nc_ht=scontent-eze1-1.xx&_nc_gid=AJsaVXVmW3lKx5-hYG2ExBy&oh=00_AYBy9mWkYhB7oj2zeiRiwWjU7fYZp0DXCYMFqHtg0w7a_g&oe=67276969" />*/}
                   <Avatar alt="Remy Sharp" src={photo_link} />
-                  
+
                 </IconButton>
               </Tooltip>
               <Menu

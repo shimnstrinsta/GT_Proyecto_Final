@@ -1,7 +1,6 @@
 const { DataTypes } = require("sequelize")
 const sequelize = require("../config/dbconfig")
 
-
 const Hour = sequelize.define("Hour", {
     id_detalle: {
         type: DataTypes.INTEGER,
@@ -28,27 +27,28 @@ const Hour = sequelize.define("Hour", {
     id_proyecto: {
         type: DataTypes.INTEGER,
         allowNull: true
-    },
+    }, 
     id_actividad: {
         type: DataTypes.INTEGER,
         allowNull: true
     },
     fecha: {
         type: DataTypes.DATE,
-        allowNull: true
+        allowNull:true
     },
-    total: {
+    total:{
         type: DataTypes.INTEGER,
-        allowNull: true
+        allowNull:true
     }
-}, {
+}, {    
     tableName: 'detalle_horas_trabajo',
     timestamps: false
 })
 
+sequelize.sync()
+    .then(() => console.log("Tablas sincronizadas correctamente"))
+    .catch(error => console.error("Error al sincronizar las tablas:" + error, error));
 
-Hour.belongsTo(require('./Proyect'), { foreignKey: 'id_proyecto', as: 'proyecto' });
-Hour.belongsTo(require('./Activity'), { foreignKey: 'id_actividad', as: 'actividad' });
 
 module.exports = Hour;
 

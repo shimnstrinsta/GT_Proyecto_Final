@@ -6,29 +6,14 @@ const getHours = async (req, res) => {
     try {
         const hours = await Hour.findAll({
             where: {
-                id_empleado: req.params.employee_id                
-            },
-            include: [
-                {
-                    model: Proyect,
-                    as: 'proyecto', // Nombre del alias definido en el modelo
-                    attributes: ['nombre'] // Obtener solo el nombre del proyecto
-                },
-                {
-                    model: Activity,
-                    as: 'actividad', // Nombre del alias definido en el modelo
-                    attributes: ['nombre'] // Obtener solo el nombre de la actividad
-                }
-            ]
+                id_empleado: req.params.employee_id,                
+            }
         });
-        console.log(hours)
-
-        
 
         if (hours) {
-            res.status(200).json(hours);
+            res.status(200).json(hours); // Devuelve el empleado encontrado
         } else {
-            res.status(404).json({ message: "Empleado no encontrado" });
+            res.status(404).json({ message: "Empleado no encontrado" }); // Manejo del caso donde no se encuentra el empleado
         }
     } catch (error) {        
         res.status(500).json({ message: "Error al buscar horas" });
@@ -44,7 +29,7 @@ const postHour = async (req, res) => {
     });
 
     const id_activity = await Activity.findOne({
-        where: { nombre: activity }
+        where: { actividad: activity }
     });
 
 
