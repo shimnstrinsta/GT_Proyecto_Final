@@ -49,7 +49,7 @@ export default function Home() {
 
 
           Array.from(response.days).forEach(element => {
-
+            const totalHoras = parseFloat(element.minutos_trabajo);    
             switch (element.dia_semana) {
               case "Lunes":
                 rows_hours[0] = parseInt(element.minutos_trabajo / 60)
@@ -74,7 +74,7 @@ export default function Home() {
                 break
 
             }
-            if (most.hours < element.minutos_trabajo) {
+            if (most.hours < totalHoras) {
               most.hours = element.minutos_trabajo
               most.day = element.dia_semana
             }
@@ -106,14 +106,14 @@ export default function Home() {
           Array.from(response.proyects).forEach(element => {
             rows_proyects.unshift(element.nombre)
             rows_hours.unshift(element.totalHoras)        
-            
-            if (most.hours < element.totalHoras) {
+            const totalHoras = parseFloat(element.totalHoras);            
+
+            if (most.hours < totalHoras) {
               most.hours = element.totalHoras
               most.project = element.nombre
             }
 
           });
-
           
           setProject(most.project)
           setProjects(rows_proyects);
@@ -136,8 +136,7 @@ export default function Home() {
         if (response.success) {
           const rows_hours = []
           const rows_activities = []          
-
-          console.log(response.activities)
+          
           Array.from(response.activities).forEach(element => {
             rows_activities.unshift(element.nombre)
             rows_hours.unshift(element.totalHoras)                  
