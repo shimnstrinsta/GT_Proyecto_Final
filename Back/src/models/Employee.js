@@ -28,6 +28,10 @@ const Employee = sequelize.define("Employee",{
     ruta_foto:{
         type: DataTypes.STRING,
         allowNull:true
+    },
+    supervisor:{
+        type: DataTypes.BOOLEAN,
+        allowNull: true
     }
 },{    
     tableName: 'empleado',

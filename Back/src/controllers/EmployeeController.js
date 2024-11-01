@@ -102,9 +102,43 @@ const getEmployeeProfile = async (req, res) => {
     }
 };
 
+const updateEmployee = async (req, res) => {
+    const { id_empleado, nombre, apellido, email, contrasenia } = req.body;
+
+    Employee.findByPk(id_empleado)
+        .then((employee) => {
+            if (!employee) {
+                return res.status(404).json({
+                    success: false,
+                    message: "Empleado no encontrado"
+                });
+            }
+
+            // Actualizar los campos del empleado
+            return employee.update({ nombre, apellido, email, contrasenia });
+        })
+        .then((updatedEmployee) => {
+            console.log("Empleado actualizado exitosamente");
+            res.status(200).json({
+                success: true,
+                employee: updatedEmployee,
+                message: "Datos de empleado actualizados exitosamente"
+            });
+        })
+        .catch((error) => {
+            console.error("Error al actualizar el empleado:", error);
+            res.status(500).json({
+                success: false,
+                employee: null,
+                message: "Error al actualizar el empleado en la base de datos."
+            });
+        });
+};
+
 module.exports = {
     getEmployeers,
     getEmployee,
     postEmployee,
-    getEmployeeProfile
-}
+    getEmployeeProfile,
+    updateEmployee
+};

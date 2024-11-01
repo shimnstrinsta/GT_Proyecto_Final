@@ -19,15 +19,20 @@
 }
 
 .profile-photo img {
-    max-width: 200px; /* Ancho máximo de la imagen */
-    max-height: 200px; /* Alto máximo de la imagen */
+    max-width: 220px; /* Ancho máximo de la imagen */
+    max-height: 220px; /* Alto máximo de la imagen */
     margin-bottom: 1rem; /* Espacio inferior entre la imagen y el texto */
     border-radius: 50%; /* Hace que la imagen sea circular */
 }
 
 .profile-form {
-    width: 100%; /* Ancho completo */
-    max-width: 400px; /* Ancho máximo del formulario */
+    width: 100%;
+    max-width: 400px;
+    padding: 2rem;
+    border: 1px solid #e0e0e0; /* Borde sutil */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para darle profundidad */
+    background-color: #ffffff; /* Fondo blanco */
 }
 
 .profile-form .MuiTextField-root {
@@ -35,11 +40,17 @@
 }
 
 .profile-form button {
-    margin-top: 1rem; /* Espacio superior para el botón */
-    background-color: #4CAF50; /* Color de fondo del botón */
-    color: #FFFF; /* Color del texto del botón */
+    margin-top: 1rem;
+    background-color: #4CAF50;
+    color: #FFFF;
 }
 
 .profile-form button:hover {
-    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    cursor: pointer;
+    background-color: #45a049; /* Color de fondo en hover */
 }
+
+.profile-form p {
+    text-align: center;
+}
+

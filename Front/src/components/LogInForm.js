@@ -23,8 +23,13 @@ function LogInForm() {
     .then(response =>{
       setLoading(false)
       if (response.success){
-        setErrorMessage("")        
-        navigate("/home");
+        setErrorMessage("")
+        if(response.supervisor){
+          navigate("/supervisor/home")
+        }
+        else{
+          navigate("/home");
+        }
       }
       else{
         setErrorMessage(response.message)
