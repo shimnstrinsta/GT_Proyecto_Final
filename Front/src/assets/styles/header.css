@@ -1,6 +1,12 @@
 .container_items{    
     display: flex;
-    justify-content: space-between;    
+    justify-content: space-between;        
+}
+
+.container_items p{
+    color: #FFF;
+    margin-right: 5px;
+    font-size: 20px;
 }
 
 .header_container_items{    

@@ -10,20 +10,27 @@ import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import { hourService } from '../services/HourService';
 import img from "../img/no_hour.png"
+import Avatar from '@mui/material/Avatar';
 
 import "../assets/styles/hour.css"
 
-const columns = [
+const columns = [  
+  { id: "photo", label: "Empleado", minWidth: 50 },
+  { id: "employeeName", label: "Nombre", minWidth: 100 },
+  { id: "employeeLastName", label: "Apellido", minWidth: 100 },
   { id: "project", label: "Proyecto", minWidth: 120 },
   { id: "date", label: "Fecha", minWidth: 70 },
   { id: "time_init", label: "Hora inicio", minWidth: 70 },
   { id: "time_end", label: "Hora fin", minWidth: 70 },
   { id: "total", label: "Total (hrs)", minWidth: 70 },
   { id: "activity", label: "Actividad", minWidth: 100 },
-  { id: "description", label: "Resumen", minWidth: 250 },
+  { id: "description", label: "Resumen", minWidth: 350 },
 ];
 
-function createData(
+function createData(  
+  photo,
+  employeeName,
+  employeeLastName,
   project,
   date,
   time_init,
@@ -32,11 +39,11 @@ function createData(
   activity,
   description
 ) {
-  return { project, date, time_init, time_end, total, activity, description };
+  return { photo,employeeName,employeeLastName,project, date, time_init, time_end, total, activity, description };
 }
 
 
-export default function ManageHour() {
+export default function HourSupervisor() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const navigate = useNavigate();
@@ -45,20 +52,20 @@ export default function ManageHour() {
 
   useEffect(() => {
 
-    hourService.get()
+    hourService.getAllHours()
       .then(response => {
-
+        console.log(response)
         if (response.success) {
           const rows_hours = []
 
           Array.from(response.hours).forEach(element => {
             const minutos = element.total
-            const horas = Math.floor(minutos / 60).toString().padStart(2, '0'); // Asegura dos cifras en horas
-            const minutosRestantes = (minutos % 60).toString().padStart(2, '0'); // Asegura dos cifras en minutos
+            const horas = Math.floor(minutos / 60).toString().padStart(2, '0'); 
+            const minutosRestantes = (minutos % 60).toString().padStart(2, '0'); 
 
             const total = `${horas}:${minutosRestantes}`
-
-            rows_hours.unshift(createData(element.proyecto.nombre, element.fecha, element.hora_inicio_trabajo, element.hora_fin_trabajo, total, element.actividad.nombre, element.descripcion_hora_trabajo))
+            console.log(element.empleado.ruta_foto)
+            rows_hours.unshift(createData(element.empleado.ruta_foto,element.empleado.nombre,element.empleado.apellido,element.proyecto.nombre, element.fecha, element.hora_inicio_trabajo, element.hora_fin_trabajo, total, element.actividad.nombre, element.descripcion_hora_trabajo))
           });
 
           setRows(rows_hours)
@@ -86,7 +93,7 @@ export default function ManageHour() {
     return (
       <div className="no_hour">
         <img src={img}></img>
-        <h1>Todavia no tienes horas registradas</h1>
+        <h1>Todavia no hay horas registradas</h1>
       </div>
     )
   }
@@ -123,6 +130,15 @@ export default function ManageHour() {
                       >
                         {columns.map((column) => {
                           const value = row[column.id];
+                          if (column.id === 'photo') {
+                            return (
+                              <TableCell key={column.id} align={column.align}>
+
+                                <Avatar alt="Empleado" src={value} />
+                                {/* <img src={value} alt="Empleado" style={{ width: '40px', borderRadius: '50%' }} /> */}
+                              </TableCell>
+                            );
+                          }
                           return (
                             <TableCell key={column.id} align={column.align}>
                               {column.format && typeof value === "number"
@@ -145,8 +161,7 @@ export default function ManageHour() {
             page={page}
             onPageChange={handleChangePage}
             onRowsPerPageChange={handleChangeRowsPerPage}
-          />
-          <button onClick={() => navigate("/hour/insert")}>Insertar horas</button>
+          />          
         </Paper>
       </div>
     );

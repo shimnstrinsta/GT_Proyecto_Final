@@ -1,31 +1,28 @@
 
 .container_item{    
-    margin : 1%;    
-    padding: 1%;
+    margin: 0 auto;
     padding-top: 3%;
     padding-bottom: 3%;
-    text-align: center;
+    text-align: center;    
     flex-direction: row;
     width:90vw;
     border-top:rgb(156, 156, 156) solid 2px;
     border-bottom:rgb(156, 156, 156) solid 2px;
 }
 
-#container_logo img{
-    padding-top: 300dvh;
-    width: 60%;
+.full-screen-logo {
+    height: 100dvh; /* Ocupa toda la altura de la ventana */
+    display: flex; /* Utiliza flexbox para centrar la imagen */
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+    overflow: hidden; /* Para ocultar cualquier desbordamiento */
 }
 
-#container_logo{
-    border:none;
-    margin-top: 40%;    
-    margin-bottom: 20%;    
+.full-screen-logo img {
+    width: 60%; /* La imagen ocupa el 100% del ancho del contenedor */
+    height: auto; /* Mantiene la proporción de la imagen */       
 }
 
-#button_container{    
-    justify-content: center; 
-    align-items: center;    
-}
 
 .button_item{
     margin:20px;
@@ -52,19 +49,24 @@
 
 
 #insert_hour{
-    background-image: url("https://t4.ftcdn.net/jpg/09/31/09/85/360_F_931098564_QlVisdrP5ZiIRRN2rjfLhXj1tSkrooqx.jpg");
-    background-size: cover;
-    background-position: center;    
-    background-repeat: no-repeat;
-    height: 44dvh;    
-    border-radius: 20px;  
-    font-size: 30px;  
-    letter-spacing: 10px;
+    background-image: url("../../img/insert_hour.png");
     margin-bottom: 20px;
 }
 
 #get_hour{
-    background-image: url("https://t4.ftcdn.net/jpg/08/45/27/83/360_F_845278348_WlDw0x7efqnIHj1lsFmGdjsUSsd373Jm.jpg");
+    background-image: url("../../img/hour.png");
+}
+
+#proyects{
+    background-image: url("https://www.europeanbiogas.eu/wp-content/uploads/2019/07/slide-CAC.jpg.webp");
+    margin-bottom: 20px;    
+}
+
+#hours{
+    background-image: url("https://png.pngtree.com/thumb_back/fh260/background/20240410/pngtree-financial-accounting-banking-finance-business-banking-image_15654018.jpg");    
+}
+
+.btns_principal{
     background-size: cover;
     background-position: center;    
     background-repeat: no-repeat;
@@ -72,12 +74,17 @@
     border-radius: 20px;  
     font-size: 30px;  
     letter-spacing: 10px;
-
+    text-shadow: 
+        -1px -1px 0 #00000085,  /* Sombra arriba a la izquierda */
+        1px -1px 0 #00000085,   /* Sombra arriba a la derecha */
+        -1px 1px 0 #00000085,   /* Sombra abajo a la izquierda */
+        1px 1px 0 #00000085     /* Sombra abajo a la derecha */
 }
 
-#get_hour:hover,#insert_hour:hover{
+.btns_principal:hover{    
     height: 50vh;  
-    transition: all 1s;  
+    transition: all .5s;  
+    transition-delay: .25s;
 }
 
 @media (max-width: 900px) {
@@ -88,14 +95,14 @@
 }
 
 @media (max-width: 600px) {
-    #button_container{
-        flex-direction: column; 
+    #get_hour{
+        background-position: left;
     }
-    #container_logo{
+    #insert_hour{        
+        background-position: right;
+    }
+    .full-screen-logo{
         display: none;
-    }
-    #button_container{
-        padding-top: 180vh;
     }
 
 }

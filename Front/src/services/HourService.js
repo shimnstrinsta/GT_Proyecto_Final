@@ -63,5 +63,18 @@ export const hourService = {
                 return { success: false, message: "Error de consultar horas: " + error.message };
             }
         );
+    },
+
+    getAllHours: async () => {        
+        
+        return fetch(`http://localhost:3001/hour`)
+            .then(response => response.json())
+            .then(hours => {
+                return {success: true, hours}
+            })
+            .catch(error => {
+                return { success: false, message: "Error de consultar horas: " + error.message };
+            }
+        );
     }
 };

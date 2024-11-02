@@ -7,6 +7,8 @@ import InsertPage from '../pages/InsertHourPage'
 import ManageHourPage from '../pages/ManageHourPage'
 import UserAccount from '../pages/UserAccount'
 import SupervisorHomePage from '../pages/SupervisorHomePage'
+import SupervisorHourPage from '../pages/SupervisorHourPage'
+import ProjectsPage from '../pages/ProjectsPage'
 
 export default function Routing() {
   return (    
@@ -20,7 +22,9 @@ export default function Routing() {
           <Route exact path="/hour" element={<ManageHourPage />} /> 
           <Route exact path="/user" element={<UserAccount />} /> 
 
-          <Route exact path="/home/supervisor" element={<SupervisorHomePage />} /> 
+          <Route exact path="/supervisor/home" element={<SupervisorHomePage />} /> 
+          <Route exact path="/supervisor/hour" element={<SupervisorHourPage />} /> 
+          <Route exact path="/project" element={<ProjectsPage />} /> 
           
         </Routes>
     </Router>

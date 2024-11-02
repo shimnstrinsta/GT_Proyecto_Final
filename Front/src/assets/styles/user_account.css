@@ -11,18 +11,8 @@
     min-height: 100vh; /* Asegura que el contenedor tenga altura completa */
 }
 
-.profile-photo {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 1.5rem; /* Espacio inferior */
-}
-
-.profile-photo img {
-    max-width: 220px; /* Ancho máximo de la imagen */
-    max-height: 220px; /* Alto máximo de la imagen */
-    margin-bottom: 1rem; /* Espacio inferior entre la imagen y el texto */
-    border-radius: 50%; /* Hace que la imagen sea circular */
+.profile-photo {    
+    margin-bottom: 1.5rem; /* Espacio inferior */    
 }
 
 .profile-form {

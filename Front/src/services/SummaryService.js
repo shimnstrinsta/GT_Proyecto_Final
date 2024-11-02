@@ -1,6 +1,5 @@
 export const summaryService = {
-    dayWeek: async (employee_id) => {        
-        console.log("Employee: "+employee_id)
+    dayWeek: async (employee_id) => {                
         return fetch(`http://localhost:3001/summary/day/${employee_id}`)
             .then(response => response.json())
             .then(days => {                
@@ -11,20 +10,18 @@ export const summaryService = {
             }
         );
     },
-    proyect: async (employee_id) => {        
-        console.log("Employee: "+employee_id)
-        return fetch(`http://localhost:3001/summary/proyect/${employee_id}`)
+    project: async (employee_id) => {                
+        return fetch(`http://localhost:3001/summary/project/${employee_id}`)
             .then(response => response.json())
-            .then(proyects => {                                
-                return {success: true, proyects}
+            .then(projects => {                                
+                return {success: true, projects}
             })
             .catch(error => {
                 return { success: false, message: "Error de consultar horas: " + error.message };
             }
         );
     },
-    activity: async (employee_id) => {        
-        console.log("Employee: "+employee_id)
+    activity: async (employee_id) => {                
         return fetch(`http://localhost:3001/summary/activity/${employee_id}`)
             .then(response => response.json())
             .then(activities => {                                

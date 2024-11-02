@@ -29,25 +29,25 @@ export default function Home() {
 
       <div className='container'>
 
-        <div className='container_item' id='container_logo'>
-          <Image src={logo} />
+        <div className='full-screen-logo'>
+          <Image src={logo} fluid />
         </div>
 
 
         <div className='container_item' id='button_container'>
 
-          <button id='insert_hour' onClick={() => navigate("/hour/insert")}>Registrar horas</button>
-          <button id='get_hour' onClick={() => navigate("/hour")}>Consultar horas</button>
-          
+          <button className="btns_principal" id='insert_hour' onClick={() => navigate("/hour/insert")}>Registrar horas</button>
+          <button className="btns_principal" id='get_hour' onClick={() => navigate("/hour")}>Consultar horas</button>
+
         </div>
       </div>
 
 
-      <Summary  employee_id = {localStorage.getItem("id_user")}/>
+      <Summary employee_id={localStorage.getItem("id_user")} />
       <Footer />
     </div>
   );
-  
+
 }
 
 

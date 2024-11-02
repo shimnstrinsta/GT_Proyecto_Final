@@ -49,6 +49,7 @@ const Hour = sequelize.define("Hour", {
 
 Hour.belongsTo(require('./Proyect'), { foreignKey: 'id_proyecto', as: 'proyecto' });
 Hour.belongsTo(require('./Activity'), { foreignKey: 'id_actividad', as: 'actividad' });
+Hour.belongsTo(require('./Employee'), { foreignKey: 'id_empleado', as: 'empleado' });
 
 module.exports = Hour;
 
