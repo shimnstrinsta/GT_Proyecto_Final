@@ -1,7 +1,6 @@
 export const summaryService = {
-    dayWeek: async () => {
-        const employee_id = localStorage.getItem("id_user");
-
+    dayWeek: async (employee_id) => {        
+        console.log("Employee: "+employee_id)
         return fetch(`http://localhost:3001/summary/day/${employee_id}`)
             .then(response => response.json())
             .then(days => {                
@@ -12,9 +11,8 @@ export const summaryService = {
             }
         );
     },
-    proyect: async () => {
-        const employee_id = localStorage.getItem("id_user");
-
+    proyect: async (employee_id) => {        
+        console.log("Employee: "+employee_id)
         return fetch(`http://localhost:3001/summary/proyect/${employee_id}`)
             .then(response => response.json())
             .then(proyects => {                                
@@ -25,9 +23,8 @@ export const summaryService = {
             }
         );
     },
-    activity: async () => {
-        const employee_id = localStorage.getItem("id_user");
-
+    activity: async (employee_id) => {        
+        console.log("Employee: "+employee_id)
         return fetch(`http://localhost:3001/summary/activity/${employee_id}`)
             .then(response => response.json())
             .then(activities => {                                

@@ -5,9 +5,9 @@ import { ListItem, ListHeader, ListContent, List } from 'semantic-ui-react';
 import { summaryService } from '../services/SummaryService';
 
 
-export default function Summary() {
+export default function Summary({employee_id = 0}) {
     Chart.register(...registerables);
-    
+
     const [mostWorkedProject, setProject] = useState("");
     const [mostWorkedDay, setDay] = useState("");
 
@@ -18,7 +18,8 @@ export default function Summary() {
     const [hoursDay, setHoursDay] = useState([])
 
     useEffect(() => {
-        summaryService.dayWeek()
+        console.log(employee_id)
+        summaryService.dayWeek(employee_id)
             .then(response => {
 
                 if (response.success) {
@@ -72,7 +73,7 @@ export default function Summary() {
     }, []);
 
     useEffect(() => {
-        summaryService.proyect()
+        summaryService.proyect(employee_id)
             .then(response => {
 
                 if (response.success) {
@@ -108,7 +109,7 @@ export default function Summary() {
     }, []);
 
     useEffect(() => {
-        summaryService.activity()
+        summaryService.activity(employee_id)
             .then(response => {
 
                 if (response.success) {
@@ -199,39 +200,44 @@ export default function Summary() {
         ],
     };
 
-    return (
-        <div>
-            <div className='container_item content_container'>
-                <div className='content_info'>
-                    <h4>Tu día más productivo es el</h4>
-                    <h1>{mostWorkedDay}</h1>
+    if (mostWorkedDay == "") {
+        return (<div></div>)
+    }
+    else {
+        return (
+            <div>
+                <div className='container_item content_container'>
+                    <div className='content_info'>
+                        <h4>Tu día más productivo es el</h4>
+                        <h1>{mostWorkedDay}</h1>
+                    </div>
+                    <div className='content_graph'><Bar data={data} options={options} /></div>
                 </div>
-                <div className='content_graph'><Bar data={data} options={options} /></div>
-            </div>
-            <div className='container_item content_container'>
-                <div className='content_graph'><Pie data={dataTareas} id='pie' /></div>
-                <div className='content_info'>
-                    <h4>Has realizado las siguientes tareas</h4>
-                    <List animated verticalAlign='middle'>
-                        {activities.map((actividad, index) => (
-                            <ListItem key={index}>
-                                <ListContent>
-                                    <ListHeader>{actividad}</ListHeader>
-                                </ListContent>
-                            </ListItem>
-                        ))}
+                <div className='container_item content_container'>
+                    <div className='content_graph'><Pie data={dataTareas} id='pie' /></div>
+                    <div className='content_info'>
+                        <h4>Has realizado las siguientes tareas</h4>
+                        <List animated verticalAlign='middle'>
+                            {activities.map((actividad, index) => (
+                                <ListItem key={index}>
+                                    <ListContent>
+                                        <ListHeader>{actividad}</ListHeader>
+                                    </ListContent>
+                                </ListItem>
+                            ))}
 
-                    </List>
+                        </List>
+                    </div>
                 </div>
-            </div>
 
-            <div className='container_item content_container'>
-                <div className='content_info'>
-                    <h4>Tu proyecto favorito es</h4>
-                    <h1>{mostWorkedProject}</h1>
+                <div className='container_item content_container'>
+                    <div className='content_info'>
+                        <h4>Tu proyecto favorito es</h4>
+                        <h1>{mostWorkedProject}</h1>
+                    </div>
+                    <div className='content_graph'><Bar data={dataProjects} options={optionsProjects} /></div>
                 </div>
-                <div className='content_graph'><Bar data={dataProjects} options={optionsProjects} /></div>
             </div>
-        </div>
-    )
+        )
+    }
 } 

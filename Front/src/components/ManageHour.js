@@ -9,6 +9,9 @@ import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import { hourService } from '../services/HourService';
+import img from "../img/no_hour.png"
+
+import "../assets/styles/hour.css"
 
 const columns = [
   { id: "project", label: "Proyecto", minWidth: 120 },
@@ -55,7 +58,7 @@ export default function ManageHour() {
 
             const total = `${horas}:${minutosRestantes}`
 
-            rows_hours.unshift(createData(element.proyecto.nombre,element.fecha,element.hora_inicio_trabajo,element.hora_fin_trabajo,total,element.actividad.nombre,element.descripcion_hora_trabajo))
+            rows_hours.unshift(createData(element.proyecto.nombre, element.fecha, element.hora_inicio_trabajo, element.hora_fin_trabajo, total, element.actividad.nombre, element.descripcion_hora_trabajo))
           });
 
           setRows(rows_hours)
@@ -79,63 +82,76 @@ export default function ManageHour() {
     setPage(0);
   };
 
-  return (
-    <div>
-      <h1>Horas</h1>
-      <Paper sx={{ width: "100%", overflow: "hidden" }}>
-        <TableContainer sx={{ maxHeight: 440 }}>
-          <Table stickyHeader aria-label="sticky table">
-            <TableHead>
-              <TableRow>
-                {columns.map((column) => (
-                  <TableCell
-                    key={column.id}
-                    align={column.align}
-                    style={{ minWidth: column.minWidth }}
-                  >
-                    {column.label}
-                  </TableCell>
-                ))}
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {rows
-                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((row) => {
-                  return (
-                    <TableRow
-                      hover
-                      role="checkbox"
-                      tabIndex={-1}
-                      key={row.code}
+  if (rows.length == 0) {    
+    return (
+      <div className="no_hour">
+        <img src={img}></img>
+        <h1>Todavia no tienes horas registradas</h1>
+      </div>
+    )
+  }
+  else {    
+    return (
+      <div>
+        <h1>Horas</h1>
+        <Paper sx={{ width: "100%", overflow: "hidden" }}>
+          <TableContainer sx={{ maxHeight: 440 }}>
+            <Table stickyHeader aria-label="sticky table">
+              <TableHead>
+                <TableRow>
+                  {columns.map((column) => (
+                    <TableCell
+                      key={column.id}
+                      align={column.align}
+                      style={{ minWidth: column.minWidth }}
                     >
-                      {columns.map((column) => {
-                        const value = row[column.id];
-                        return (
-                          <TableCell key={column.id} align={column.align}>
-                            {column.format && typeof value === "number"
-                              ? column.format(value)
-                              : value}
-                          </TableCell>
-                        );
-                      })}
-                    </TableRow>
-                  );
-                })}
-            </TableBody>
-          </Table>
-        </TableContainer>
-        <TablePagination
-          rowsPerPageOptions={[10, 25, 100]}
-          component="div"
-          count={rows.length}
-          rowsPerPage={rowsPerPage}
-          page={page}
-          onPageChange={handleChangePage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-        />
-        <button onClick={() => navigate("/hour/insert")}>Insertar horas</button>
-      </Paper>
-    </div>
-  );
+                      {column.label}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {rows
+                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                  .map((row) => {
+                    return (
+                      <TableRow
+                        hover
+                        role="checkbox"
+                        tabIndex={-1}
+                        key={row.code}
+                      >
+                        {columns.map((column) => {
+                          const value = row[column.id];
+                          return (
+                            <TableCell key={column.id} align={column.align}>
+                              {column.format && typeof value === "number"
+                                ? column.format(value)
+                                : value}
+                            </TableCell>
+                          );
+                        })}
+                      </TableRow>
+                    );
+                  })}
+              </TableBody>
+            </Table>
+          </TableContainer>
+          <TablePagination
+            rowsPerPageOptions={[10, 25, 100]}
+            component="div"
+            count={rows.length}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            onPageChange={handleChangePage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+          />
+          <button onClick={() => navigate("/hour/insert")}>Insertar horas</button>
+        </Paper>
+      </div>
+    );
+  }
+
+
+
 }

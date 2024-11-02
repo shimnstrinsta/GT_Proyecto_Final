@@ -84,7 +84,7 @@ const User = () => {
       .then((response) => {
         if (response.success) {
           setMessage("Perfil actualizado exitosamente");
-          setMessageColor("#2680f7");
+          setMessageColor("#4CAF50");
           setOriginalData(userData);
           setErrors({});
         } else {

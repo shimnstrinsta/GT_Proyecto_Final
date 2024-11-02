@@ -22,19 +22,15 @@
     margin-bottom: 20%;    
 }
 
-#button_container{
-    display: flex;   
+#button_container{    
     justify-content: center; 
-    align-items: center;
-    flex-direction: row;
+    align-items: center;    
 }
 
 .button_item{
     margin:20px;
     flex:2;   
 }
-
-
 
 .content_container{
     display: flex;
@@ -54,6 +50,35 @@
     width: 35vw;
 }
 
+
+#insert_hour{
+    background-image: url("https://t4.ftcdn.net/jpg/09/31/09/85/360_F_931098564_QlVisdrP5ZiIRRN2rjfLhXj1tSkrooqx.jpg");
+    background-size: cover;
+    background-position: center;    
+    background-repeat: no-repeat;
+    height: 44dvh;    
+    border-radius: 20px;  
+    font-size: 30px;  
+    letter-spacing: 10px;
+    margin-bottom: 20px;
+}
+
+#get_hour{
+    background-image: url("https://t4.ftcdn.net/jpg/08/45/27/83/360_F_845278348_WlDw0x7efqnIHj1lsFmGdjsUSsd373Jm.jpg");
+    background-size: cover;
+    background-position: center;    
+    background-repeat: no-repeat;
+    height: 44dvh;    
+    border-radius: 20px;  
+    font-size: 30px;  
+    letter-spacing: 10px;
+
+}
+
+#get_hour:hover,#insert_hour:hover{
+    height: 50vh;  
+    transition: all 1s;  
+}
 
 @media (max-width: 900px) {
     .content_container{
