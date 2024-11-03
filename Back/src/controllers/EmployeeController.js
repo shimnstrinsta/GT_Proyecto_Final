@@ -43,8 +43,6 @@ const postEmployee = async (req, res) => {
 
         const email = req.params.email;        
 
-        console.log(`${nombre} ${apellido} ${contrasenia} ${email}`)
-
         const { success, url, error } = await getProfileImage();
 
         const employeeData = {

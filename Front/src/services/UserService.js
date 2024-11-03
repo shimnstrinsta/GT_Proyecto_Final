@@ -1,18 +1,18 @@
 export const userService = {
     getEmployee: () => {
-        const employee_id = localStorage.getItem("id_user"); 
+        const employee_id = localStorage.getItem("id_user");
         return fetch(`http://localhost:3001/employee/${employee_id}`, {
         })
-        .then(response => response.json())
-        .then(employee => {
-            if (employee){
-                return { success: true, employee };
-            }
-            else{
-                return { success: false, employee: null };
-            }
+            .then(response => response.json())
+            .then(employee => {
+                if (employee) {
+                    return { success: true, employee };
+                }
+                else {
+                    return { success: false, employee: null };
+                }
             })
-            .catch(error => {          
+            .catch(error => {
                 return { success: false, message: "Error de registro: " + error.message };
             });
     },
@@ -25,12 +25,23 @@ export const userService = {
             },
             body: JSON.stringify(employeeData)
         })
-        .then(response => response.json())
-        .then(data => {
-            return { success: data.success, message: data.message };
-        })
-        .catch(error => {
-            return { success: false, message: "Error al actualizar: " + error.message };
-        });
+            .then(response => response.json())
+            .then(data => {
+                return { success: data.success, message: data.message };
+            })
+            .catch(error => {
+                return { success: false, message: "Error al actualizar: " + error.message };
+            });
+    },
+    getEmployees: () => {        
+        return fetch(`http://localhost:3001/employee`, {})
+            .then(response => response.json())
+
+            .then(employee => {
+                return { success: true, employee };
+            })
+            .catch(error => {
+                return { success: false, message: "Error de consulta: " + error.message };
+            });
     }
 };

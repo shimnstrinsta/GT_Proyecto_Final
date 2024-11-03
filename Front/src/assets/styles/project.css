@@ -1,0 +1,22 @@
+.project-info-container {
+    display: flex;
+}
+
+#description {
+    resize: none;
+    height: 120%;
+    height: 15vh;
+    margin: 20px 0px 20px 0px;
+    border-radius: 5px;
+    font-family: Arial, sans-serif;
+    width: 100%;
+    border-color: #DDDDDD;
+}
+
+#graph_project{
+    margin-left: 20px;    
+}
+
+#insert-project{
+    margin-top: 30px;
+}

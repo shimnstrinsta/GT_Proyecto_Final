@@ -30,6 +30,5 @@ const Proyect = sequelize.define("Proyect", {
     timestamps: false
 })
 
-
 module.exports = Proyect;
 

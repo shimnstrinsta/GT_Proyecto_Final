@@ -1,4 +1,4 @@
-import React, { useContext, useEffect} from 'react';
+import React, { useContext, useState, useEffect} from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -17,13 +17,16 @@ import { userService } from '../services/UserService';
 import '../assets/styles/main.css';
 import '../assets/styles/header.css';
 
+
 const settings = ['Perfil', 'Cerrar sesión'];
 
+
 export default function Header() {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [anchorElNav, setAnchorElNav] = useState(null);
+  const [anchorElUser, setAnchorElUser] = useState(null);
   const navigate = useNavigate();
-  const [photo_link, setPhotoLink] = React.useState(("https://via.placeholder.com/150"))
+  const [photo_link, setPhotoLink] = useState(("https://via.placeholder.com/150"))  
+  const [url_,setUrl] = useState("/home")
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -34,7 +37,9 @@ export default function Header() {
 
   const handleLogout = () => {
     localStorage.removeItem("user");
+    localStorage.removeItem("name");
     localStorage.removeItem("id_user");
+    localStorage.removeItem("supervisor");    
     navigate("/");
     setAnchorElUser(null);
   }
@@ -43,11 +48,12 @@ export default function Header() {
     navigate("/user")
     setAnchorElUser(null);
   };
-
-
-
+  
   useEffect(() => {
     fetchUserData();
+    if(localStorage.getItem("supervisor")){
+      setUrl("/supervisor/home")
+    }
   }, []);
   
   const fetchUserData = async () => {
@@ -80,11 +86,12 @@ export default function Header() {
         <Container maxWidth="xl" >
 
           <Toolbar disableGutters className='container_items'>
-            <Link to="/home"><Image src={logo} size='small' style={{ height: '100px' }} /></Link>
+            <Link to={url_}><Image src={logo} size='small' style={{ height: '100px' }} /></Link>
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Abrir configuración">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                   {/*<Avatar alt="Remy Sharp" src="https://scontent-eze1-1.xx.fbcdn.net/v/t31.18172-8/12593697_965652153528159_2475054300731810535_o.jpg?_nc_cat=111&ccb=1-7&_nc_sid=53a332&_nc_ohc=rlKIf_jt2y0Q7kNvgFHdS1v&_nc_ht=scontent-eze1-1.xx&_nc_gid=AJsaVXVmW3lKx5-hYG2ExBy&oh=00_AYBy9mWkYhB7oj2zeiRiwWjU7fYZp0DXCYMFqHtg0w7a_g&oe=67276969" />*/}
+                  <p>{localStorage.getItem("name")}</p>
                   <Avatar alt="Remy Sharp" src={photo_link} />
                   
                 </IconButton>
