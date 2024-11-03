@@ -29,8 +29,8 @@ create table proyecto (
     id_proyecto int primary key auto_increment,
     nombre varchar(150) unique,
     descripcion varchar(1500),
-    fecha_inicio datetime,
-    fecha_fin datetime
+    fecha_inicio date,
+    fecha_fin date
 );
 
 create table actividad (
