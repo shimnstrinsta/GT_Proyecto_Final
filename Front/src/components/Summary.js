@@ -23,7 +23,6 @@ export default function Summary({employee_id = 0}) {
     const [hoursDay, setHoursDay] = useState([])
 
     useEffect(() => {
-        console.log(employee_id)
         summaryService.dayWeek(employee_id)
             .then(response => {
 

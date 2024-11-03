@@ -36,7 +36,6 @@ export default function Employee() {
                 if (response.success) {
                     const rows_employees = []                    
                     Array.from(response.employee).forEach(element => {
-                        console.log("Element:"+element)
                         let role = "Empleado"
                         if(element.supervisor) role = "Supervisor"
                         rows_employees.unshift(createData(element.ruta_foto, element.nombre, element.apellido, element.email,role))

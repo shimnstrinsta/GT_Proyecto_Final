@@ -68,7 +68,6 @@ const getAllSummaryProyect = async (req, res) => {
       }
       resultados.unshift(data)
     })
-    console.log(resultados)
     res.status(200).json(resultados);
   } catch (error) {
     res.status(500).json({ message: "Error al buscar proyectos"+error })
