@@ -38,6 +38,14 @@ const getHours = async (req, res) => {
 const getAllHours = async (req, res) => {
     try {
         const hours = await Hour.findAll({
+            attributes: [
+                'id_detalle',
+                'hora_inicio_trabajo',
+                'hora_fin_trabajo',
+                'total',
+                'descripcion_hora_trabajo',
+                'fecha'
+            ],
             include: [
                 {
                     model: Proyect,

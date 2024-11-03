@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState} from 'react';
 import '../assets/styles/login_style.css';
 import { authService } from '../services/AuthService';
 import { useNavigate } from 'react-router-dom';
@@ -7,6 +7,8 @@ function RegisterForm() {
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
+
   const [formData, setFormData] = useState({
     name: "",
     lastName: "",
