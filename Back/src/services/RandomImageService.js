@@ -6,11 +6,13 @@ async function getProfileImage() {
 
     try {
         const url = await animals[animalAleatorio]();
+
         return { success: true, url, error : null }; 
     } catch (error) {
         console.error("Error al obtener la imagen de perfil:", error);
         return { success: false,url:null, error: "Error al obtener la imagen de perfil" }; // Devuelve un JSON en caso de error
     }
 }
+
 
 module.exports = getProfileImage;

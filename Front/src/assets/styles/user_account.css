@@ -7,8 +7,8 @@
     flex-direction: column;
     align-items: center;
     padding: 2rem;
-    padding-top: 80%; /* Ajuste del espacio superior */
-    min-height: 100vh; /* Asegura que el contenedor tenga altura completa */
+    padding-top: 100px; /* Ajuste del espacio superior */
+    
 }
 
 .profile-photo {    

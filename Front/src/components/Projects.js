@@ -84,6 +84,7 @@ export default function Projects() {
     }, []);
 
     const optionsProjects = {
+        maintainAspectRatio: false,
         indexAxis: 'y', // Cambia la dirección de las barras a horizontal
         scales: {
             x: { // Escala 'x' ahora representa el eje horizontal

@@ -51,12 +51,12 @@ export default function Employee() {
     return (
         <div className='employee_container'>
             <Paper sx={{ width: '100%', overflow: 'hidden' }}>
-                <TableContainer sx={{ maxHeight: 440 }}>
+                <TableContainer sx={{ maxHeight: 750 }}>
                     <Table stickyHeader aria-label="sticky table">
                         <TableHead>
                             <TableRow>
                                 {columns.map((column) => (
-                                    <TableCell
+                                    <TableCell className='table_cell'
                                         key={column.id}
                                         align={column.align}
                                         style={{ minWidth: column.minWidth }}
