@@ -69,6 +69,11 @@ export default function HourSupervisor() {
 
           setRows(rows_hours)
         }
+        else {
+        }
+
+      })
+      .catch(error => {
 
       })
 

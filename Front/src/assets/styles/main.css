@@ -28,6 +28,10 @@ button {
     cursor: pointer;
 }
   
-button:hover, input[type = "submit"],input[type = "file"] {
+button:hover:not(.edit-button, .delete-button),
+input[type="submit"]:not(.edit-button, .delete-button),
+input[type="file"]:not(.edit-button, .delete-button) {
     background-color: #45a049;
 }
+
+

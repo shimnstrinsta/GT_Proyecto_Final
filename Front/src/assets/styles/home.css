@@ -57,6 +57,10 @@
     background-image: url("../../img/hour.png");
 }
 
+#delete_hour{
+    background-image: url("../../img/borrar_hora4.jpeg");
+}
+
 #proyects{
     background-image: url("https://www.europeanbiogas.eu/wp-content/uploads/2019/07/slide-CAC.jpg.webp");
     margin-bottom: 20px;    
@@ -83,7 +87,9 @@
         -1px -1px 0 #00000085,  /* Sombra arriba a la izquierda */
         1px -1px 0 #00000085,   /* Sombra arriba a la derecha */
         -1px 1px 0 #00000085,   /* Sombra abajo a la izquierda */
-        1px 1px 0 #00000085     /* Sombra abajo a la derecha */
+
+        1px 1px 0 #00000085 ;    /* Sombra abajo a la derecha */
+    margin-bottom: 20px;
 }
 
 .btns_principal:hover{    

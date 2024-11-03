@@ -30,6 +30,7 @@ export const projectService = {
         }
 
     },
+
     getAll: async () => {                
         return fetch(`http://localhost:3001/summary/project`)
             .then(response => response.json())

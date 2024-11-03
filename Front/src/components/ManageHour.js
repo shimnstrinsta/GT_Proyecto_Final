@@ -86,7 +86,7 @@ export default function ManageHour() {
     return (
       <div className="no_hour">
         <img src={img}></img>
-        <h1>Todavia no tienes horas registradas</h1>
+        <h1>Todavía no tienes horas registradas</h1>
       </div>
     )
   }

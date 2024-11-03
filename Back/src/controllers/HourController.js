@@ -105,10 +105,96 @@ const postHour = async (req, res) => {
 
 }
 
+const deleteHour = async (req, res) => {
+    try {
+        const { hourId } = req.body; // Obtén hourId del cuerpo de la solicitud
+        
+        const deletedHour = await Hour.destroy({
+            where: {
+                id_detalle: hourId
+            }
+        });
+
+        if (deletedHour) {
+            res.status(200).json({ message: "Registro eliminado exitosamente" });
+        } else {
+            res.status(404).json({ message: "Registro no encontrado" });
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Error al eliminar el registro" });
+    }
+};
+
+const updateHour = async (req, res) => {
+    try {
+        const { hourId, proyecto, timeBeggin, timeEnd, activity, activityDescription } = req.body;
+
+        if (!hourId) {
+            return res.status(400).json({ message: "ID de hora es requerido" });
+        }
+
+        // Obtener IDs de proyecto y actividad
+        const proyectData = await Proyect.findOne({
+            where: { nombre: proyecto }
+        });
+
+        const activityData = await Activity.findOne({
+            where: { nombre: activity }
+        });
+
+        if (!proyectData || !activityData) {
+            return res.status(404).json({ message: "Proyecto o actividad no encontrada" });
+        }
+
+        // Calcular el total de horas
+        let start = new Date(`1970-01-01T${timeBeggin}`);
+        let end = new Date(`1970-01-02T${timeEnd}`);
+
+        if(timeBeggin < timeEnd){
+            start = new Date(`1970-01-01T${timeBeggin}`);
+            end = new Date(`1970-01-01T${timeEnd}`);
+        }
+
+        let diffMs = start - end;
+
+        if (end > start) {
+            diffMs = end - start;
+        } else {
+            diffMs = 24 * 60 * 60 * 1000 + (start - end);
+        }
+
+        const total = parseInt(diffMs / 1000 / 60);
+
+        const updatedHour = await Hour.update({
+            hora_inicio_trabajo: timeBeggin,
+            hora_fin_trabajo: timeEnd,
+            descripcion_hora_trabajo: activityDescription,
+            id_proyecto: proyectData.id_proyecto,
+            id_actividad: activityData.id_actividad,
+            total: total
+        }, {
+            where: {
+                id_detalle: hourId
+            }
+        });
+
+        if (updatedHour[0] === 0) {
+            return res.status(404).json({ message: "Registro no encontrado" });
+        }
+
+        res.status(200).json({ message: "Registro actualizado exitosamente" });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Error al actualizar el registro" });
+    }
+};
+
+// Agregar updateHour a los exports
 module.exports = {
     getHours,
     postHour,
-    getAllHours
-}
-
-
+    getAllHours,
+    deleteHour,
+    updateHour
+};

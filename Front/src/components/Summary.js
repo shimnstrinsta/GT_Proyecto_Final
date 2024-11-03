@@ -7,10 +7,10 @@ import { summaryService } from '../services/SummaryService';
 export default function Summary({employee_id = 0}) {
     Chart.register(...registerables);
 
-
     const [dataDay,setDataDay] = useState("Tu día más productivo es el");
     const [dataActivity,setDataActivity] = useState("Has realizado las siguientes tareas");
     const [dataProject,setDataProject] = useState("Tu proyecto favorito es");    
+
 
 
     const [mostWorkedProject, setProject] = useState("");
@@ -192,7 +192,7 @@ export default function Summary({employee_id = 0}) {
         labels: activities,
         datasets: [
             {
-                label: '# of Votes',
+                label: 'Cantidad de horas',
                 data: hoursActivities,
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.6)',

@@ -1,3 +1,4 @@
+drop database if exists GTimesheet;
 create database if not exists GTimesheet;
 use gtimesheet;
 

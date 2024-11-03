@@ -39,8 +39,8 @@ export default function Home() {
                     <button className="btns_principal" id='employees' onClick={() => navigate("/supervisor/employee")}>Empleados</button>
                 </div>            
 
-
             <Summary/>
+
             <Footer />
         </div>
     );
