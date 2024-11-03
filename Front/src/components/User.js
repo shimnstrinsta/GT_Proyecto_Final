@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Button, Container, Divider, Form, Image } from 'semantic-ui-react';
 import { TextField } from '@mui/material';
 import { userService } from '../services/UserService';
+import Avatar from '@mui/material/Avatar';
 
 const User = () => {
   const [userData, setUserData] = useState({
@@ -12,13 +13,13 @@ const User = () => {
     password: "",
     photo: ""
   });
-
+  const [role,setRole] = useState("Empleado");
   const [originalData, setOriginalData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [isModified, setIsModified] = useState(false);
   const [message, setMessage] = useState("");
   const [messageColor, setMessageColor] = useState("");
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState({});  
 
   useEffect(() => {
     if (originalData) {
@@ -84,7 +85,7 @@ const User = () => {
       .then((response) => {
         if (response.success) {
           setMessage("Perfil actualizado exitosamente");
-          setMessageColor("#2680f7");
+          setMessageColor("#4CAF50");
           setOriginalData(userData);
           setErrors({});
         } else {
@@ -104,6 +105,12 @@ const User = () => {
   useEffect(() => {
     fetchUserData();
   }, []);
+
+  useEffect(() => {
+    if(localStorage.getItem("supervisor")){
+      setRole("Supervisor")
+    }
+  },[])
 
   const fetchUserData = async () => {
     setLoading(true);
@@ -137,14 +144,12 @@ const User = () => {
   return (
     <Container className="profile-container">
       <div className="profile-photo">
-        <Image
-          src={userData.photo || "https://via.placeholder.com/150"}
-          size="small"
-          circular
-          alt="Foto de perfil"
-        />
-      </div>
+        <Avatar alt="Foto de perfil" src={userData.photo || "https://via.placeholder.com/150"} sx={{ width: 250, height: 250 }}/>
+      </div>      
       <Divider />
+      
+      <h2>{role}</h2>
+
       <Form className="profile-form" onSubmit={handleSubmit}>
         <Form.Field>
           <TextField

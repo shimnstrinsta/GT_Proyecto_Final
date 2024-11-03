@@ -1,14 +1,14 @@
 import React from 'react';
 import Header from '../components/Header';
-import ManageHour from '../components/ManageHour'
+import Projects from '../components/Projects'
 
-function ManageHourPage() {
+function ProjectsPage() {
   return (
     <div>
         <Header/>
-        <ManageHour/>
+        <Projects/>
     </div>
   );
 }
 
-export default ManageHourPage;
+export default ProjectsPage;

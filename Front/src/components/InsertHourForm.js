@@ -45,7 +45,7 @@ export default function InserHourForm() {
     }
 
     useEffect(()=>{
-        fetch(`http://localhost:3001/proyect`)
+        fetch(`http://localhost:3001/project`)
         .then(response => response.json())
         .then(proyects => {
             const proyect_name = [];

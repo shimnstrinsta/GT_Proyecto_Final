@@ -34,7 +34,7 @@ export const hourService = {
             const response = await fetch("http://localhost:3001/hour/" + employee_id, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json' // Indica que el contenido es JSON
+                    'Content-Type': 'application/json' 
                 },
                 body: JSON.stringify(data)
             });
@@ -63,5 +63,79 @@ export const hourService = {
                 return { success: false, message: "Error de consultar horas: " + error.message };
             }
         );
+    },
+
+    getAllHours: async () => {        
+        
+        return fetch(`http://localhost:3001/hour`)
+            .then(response => response.json())
+            .then(hours => {
+                return {success: true, hours}
+            })
+            .catch(error => {
+                return { success: false, message: "Error de consultar horas: " + error.message };
+            }
+        );
+    },
+
+    delete: async (hourId) => {        
+        try {
+            const response = await fetch(`http://localhost:3001/hour`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ hourId }) 
+            });
+    
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.message || 'Error al eliminar el registro');
+            }
+    
+            const data = await response.json();
+            return { success: true, message: data.message };
+    
+        } catch (error) {
+            return { 
+                success: false, 
+                message: error.message || "Error al eliminar el registro" 
+            };
+        }
+    },
+
+    update: async (hourId, data) => {
+        const { proyecto, timeBeggin, timeEnd, activity, activityDescription } = data;
+        
+        try {
+            const response = await fetch(`http://localhost:3001/hour/update`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    hourId,
+                    proyecto,
+                    timeBeggin,
+                    timeEnd,
+                    activity,
+                    activityDescription
+                })
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.message || 'Error al actualizar el registro');
+            }
+
+            const responseData = await response.json();
+            return { success: true, message: responseData.message };
+
+        } catch (error) {
+            return { 
+                success: false, 
+                message: error.message || "Error al actualizar el registro" 
+            };
+        }
     }
 };

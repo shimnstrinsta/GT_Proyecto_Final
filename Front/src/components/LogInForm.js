@@ -11,21 +11,23 @@ function LogInForm() {
   const [password, setPassword] = useState("")
   const [errorMessage, setErrorMessage] = useState("")
   const [loading, setLoading] = useState(false)
-  const navigate = useNavigate()  
+  const navigate = useNavigate()    
 
   const handleLogInSubmit = (event) => {
     setLoading(true)
     setTimeout(9999);
 
-    event.preventDefault(); // Evitar que el formulario se recargue    
-
+    event.preventDefault();    
     authService.login(credential,password)
+    
     .then(response =>{
+      console.log(response)
       setLoading(false)
       if (response.success){
         setErrorMessage("")
         if(response.supervisor){
           navigate("/supervisor/home")
+          localStorage.setItem("supervisor",true)
         }
         else{
           navigate("/home");

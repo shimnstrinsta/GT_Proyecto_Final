@@ -7,6 +7,7 @@ export const authService = {
         if (user && user.email) {
           localStorage.setItem("user", user.email);
           localStorage.setItem("id_user", user.id_empleado);
+          localStorage.setItem("name", user.nombre);          
           return { success: true, email: user.email, name: user.name, supervisor: user.supervisor};
         } else {
           return { success: false, message: "Error: " + user.message };

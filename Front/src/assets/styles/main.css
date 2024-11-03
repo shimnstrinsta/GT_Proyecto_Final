@@ -3,10 +3,8 @@ body {
     background-color: #f4f4f4;
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    padding-top: 80px;
+    align-items: center;    
+    margin: 0;    
 }
 
 input {
@@ -30,6 +28,10 @@ button {
     cursor: pointer;
 }
   
-button:hover, input[type = "submit"],input[type = "file"] {
+button:hover:not(.edit-button, .delete-button),
+input[type="submit"]:not(.edit-button, .delete-button),
+input[type="file"]:not(.edit-button, .delete-button) {
     background-color: #45a049;
 }
+
+

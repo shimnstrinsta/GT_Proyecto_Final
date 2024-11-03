@@ -1,6 +1,6 @@
 const {Sequelize} = require("sequelize")
 
-const sequelize = new Sequelize("gtimesheet", "root", "123123", { 
+const sequelize = new Sequelize("gtimesheet", "root", "fatay2006-2022", { 
     host: "localhost",
     dialect: "mysql",
     port: 3306,

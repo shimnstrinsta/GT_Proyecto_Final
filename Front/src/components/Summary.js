@@ -4,21 +4,26 @@ import { Chart, registerables } from 'chart.js';
 import { ListItem, ListHeader, ListContent, List } from 'semantic-ui-react';
 import { summaryService } from '../services/SummaryService';
 
-
-export default function Summary() {
+export default function Summary({employee_id = 0}) {
     Chart.register(...registerables);
-    
+
+    const [dataDay,setDataDay] = useState("Tu día más productivo es el");
+    const [dataActivity,setDataActivity] = useState("Has realizado las siguientes tareas");
+    const [dataProject,setDataProject] = useState("Tu projycto favorito es");    
+
+
     const [mostWorkedProject, setProject] = useState("");
     const [mostWorkedDay, setDay] = useState("");
 
     const [activities, setActivities] = useState([]);
-    const [proyects, setProjects] = useState([]);
+    const [projects, setProjects] = useState([]);
     const [hoursActivities, setHoursActivites] = useState([])
-    const [hoursProyects, setHoursProyects] = useState([])
+    const [hoursProjects, setHoursProjects] = useState([])
     const [hoursDay, setHoursDay] = useState([])
 
     useEffect(() => {
-        summaryService.dayWeek()
+        console.log(employee_id)
+        summaryService.dayWeek(employee_id)
             .then(response => {
 
                 if (response.success) {
@@ -72,17 +77,17 @@ export default function Summary() {
     }, []);
 
     useEffect(() => {
-        summaryService.proyect()
+        summaryService.project(employee_id)
             .then(response => {
 
                 if (response.success) {
                     const rows_hours = []
-                    const rows_proyects = []
+                    const rows_projects = []
                     const most = { project: "", hours: 0 }
 
 
-                    Array.from(response.proyects).forEach(element => {
-                        rows_proyects.unshift(element.nombre)
+                    Array.from(response.projects).forEach(element => {
+                        rows_projects.unshift(element.nombre)
                         rows_hours.unshift(element.totalHoras)
                         const totalHoras = parseFloat(element.totalHoras);
 
@@ -94,8 +99,8 @@ export default function Summary() {
                     });
 
                     setProject(most.project)
-                    setProjects(rows_proyects);
-                    setHoursProyects(rows_hours);
+                    setProjects(rows_projects);
+                    setHoursProjects(rows_hours);
                 }
 
                 else {
@@ -108,7 +113,7 @@ export default function Summary() {
     }, []);
 
     useEffect(() => {
-        summaryService.activity()
+        summaryService.activity(employee_id)
             .then(response => {
 
                 if (response.success) {
@@ -133,6 +138,14 @@ export default function Summary() {
             })
     }, []);
 
+    useEffect(()=>{
+        if(localStorage.getItem("supervisor")){
+            setDataDay("El día más productivo es")
+            setDataActivity("Las tareas realizadas son")
+            setDataProject("El proyecto más trabajado es")
+        }
+    },[])
+
     // Horas
     const data = {
         labels: ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'],
@@ -155,11 +168,11 @@ export default function Summary() {
 
     // Tareas
     const dataProjects = {
-        labels: proyects,
+        labels: projects,
         datasets: [
             {
                 label: 'Horas',
-                data: hoursProyects,
+                data: hoursProjects,
                 backgroundColor: 'rgba(102, 181, 102, 0.6)',
             },
         ],
@@ -173,12 +186,12 @@ export default function Summary() {
         },
     };
 
-    // Proyectos
+    // Projectos
     const dataTareas = {
         labels: activities,
         datasets: [
             {
-                label: '# of Votes',
+                label: 'Cantidad de horas',
                 data: hoursActivities,
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.6)',
@@ -199,39 +212,44 @@ export default function Summary() {
         ],
     };
 
-    return (
-        <div>
-            <div className='container_item content_container'>
-                <div className='content_info'>
-                    <h4>Tu día más productivo es el</h4>
-                    <h1>{mostWorkedDay}</h1>
+    if (mostWorkedDay == "") {
+        return (<div></div>)
+    }
+    else {
+        return (
+            <div>
+                <div className='container_item content_container'>
+                    <div className='content_info'>
+                        <h4>{dataDay}</h4>
+                        <h1>{mostWorkedDay}</h1>
+                    </div>
+                    <div className='content_graph'><Bar data={data} options={options} /></div>
                 </div>
-                <div className='content_graph'><Bar data={data} options={options} /></div>
-            </div>
-            <div className='container_item content_container'>
-                <div className='content_graph'><Pie data={dataTareas} id='pie' /></div>
-                <div className='content_info'>
-                    <h4>Has realizado las siguientes tareas</h4>
-                    <List animated verticalAlign='middle'>
-                        {activities.map((actividad, index) => (
-                            <ListItem key={index}>
-                                <ListContent>
-                                    <ListHeader>{actividad}</ListHeader>
-                                </ListContent>
-                            </ListItem>
-                        ))}
+                <div className='container_item content_container'>
+                    <div className='content_graph'><Pie data={dataTareas} id='pie' /></div>
+                    <div className='content_info'>
+                        <h4>{dataActivity}</h4>
+                        <List animated verticalAlign='middle'>
+                            {activities.map((actividad, index) => (
+                                <ListItem key={index}>
+                                    <ListContent>
+                                        <ListHeader>{actividad}</ListHeader>
+                                    </ListContent>
+                                </ListItem>
+                            ))}
 
-                    </List>
+                        </List>
+                    </div>
                 </div>
-            </div>
 
-            <div className='container_item content_container'>
-                <div className='content_info'>
-                    <h4>Tu proyecto favorito es</h4>
-                    <h1>{mostWorkedProject}</h1>
+                <div className='container_item content_container'>
+                    <div className='content_info'>
+                        <h4>{dataProject}</h4>
+                        <h1>{mostWorkedProject}</h1>
+                    </div>
+                    <div className='content_graph'><Bar data={dataProjects} options={optionsProjects} /></div>
                 </div>
-                <div className='content_graph'><Bar data={dataProjects} options={optionsProjects} /></div>
             </div>
-        </div>
-    )
+        )
+    }
 } 
