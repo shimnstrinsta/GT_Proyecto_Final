@@ -38,9 +38,5 @@ const Employee = sequelize.define("Employee",{
     timestamps: false
 })
 
-sequelize.sync()
-    .then(() => console.log("Tablas sincronizadas correctamente"))
-    .catch(error => console.error("Error al sincronizar las tablas:"+error, error));
-
 
 module.exports = Employee;

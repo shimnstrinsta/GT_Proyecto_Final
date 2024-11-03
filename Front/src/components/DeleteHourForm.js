@@ -15,8 +15,8 @@ import Box from '@mui/material/Box';
 import { hourService } from '../services/HourService';
 import img from "../img/no_hour.png";
 import '../assets/styles/delete_hour.css';
-
-
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
 
 
 
@@ -30,8 +30,7 @@ function createData(hour) {
         time_end: hour.hora_fin_trabajo,
         total: formatTotal(hour.total),
         activity: hour.actividad.nombre,
-        description: hour.descripcion_hora_trabajo,
-        // Mantener la referencia al objeto original para tener todos los datos
+        description: hour.descripcion_hora_trabajo,        
         originalHour: hour
     };
 }
@@ -187,10 +186,10 @@ export default function DeleteHourForm() {
     const ActionButtons = ({ row, onEdit, onDelete }) => (
         <>
             <button onClick={() => onEdit(row)} className="edit-button">
-                Editar
+                <EditIcon/>
             </button>
             <button onClick={() => onDelete(row)} className="delete-button">
-                Eliminar
+                <DeleteIcon/>
             </button>
         </>
     );
@@ -206,7 +205,8 @@ export default function DeleteHourForm() {
         {
             id: "actions",
             label: "Acciones",
-            minWidth: 250,
+            minWidth: 10,
+            maxWidth: 10,
             align: "center",
             render: (row) => (
                 <ActionButtons 

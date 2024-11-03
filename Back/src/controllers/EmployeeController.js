@@ -31,7 +31,6 @@ const getEmployee = async (req, res) => {
             res.status(404).json({ message: "Empleado no encontrado" });
         }
     } catch (error) {        
-        console.log(error)
         res.status(500).json({ message: "Error al buscar el empleado" });
     }
 };
@@ -55,7 +54,6 @@ const postEmployee = async (req, res) => {
 
         await Employee.create(employeeData)
             .then((employee) => {
-                console.log("Empleado creado exitosamente");
                 res.status(200).json({
                     success: true,
                     employee: employee,
@@ -116,7 +114,6 @@ const updateEmployee = async (req, res) => {
             return employee.update({ nombre, apellido, email, contrasenia });
         })
         .then((updatedEmployee) => {
-            console.log("Empleado actualizado exitosamente");
             res.status(200).json({
                 success: true,
                 employee: updatedEmployee,

@@ -37,8 +37,8 @@ export default function Home() {
         <div className='container_item' id='button_container'>
 
           <button className="btns_principal" id='insert_hour' onClick={() => navigate("/hour/insert")}>Registrar horas</button>
-          <button className="btns_principal" id='get_hour' onClick={() => navigate("/hour")}>Consultar horas</button>
-          <button className="btns_principal" id='delete_hour' onClick={() => navigate("/hour/delete")}>Eliminar horas</button>
+          <button className="btns_principal" id='get_hour' onClick={() => navigate("/hour/delete")}>Gestionar horas</button>
+          {/* <button className="btns_principal" id='delete_hour' onClick={() => navigate("/hour/delete")}>Eliminar horas</button> */}
 
         </div>
       </div>

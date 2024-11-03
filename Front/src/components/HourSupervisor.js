@@ -54,7 +54,6 @@ export default function HourSupervisor() {
 
     hourService.getAllHours()
       .then(response => {
-        console.log(response)
         if (response.success) {
           const rows_hours = []
 

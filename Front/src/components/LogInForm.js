@@ -21,7 +21,6 @@ function LogInForm() {
     authService.login(credential,password)
     
     .then(response =>{
-      console.log(response)
       setLoading(false)
       if (response.success){
         setErrorMessage("")
