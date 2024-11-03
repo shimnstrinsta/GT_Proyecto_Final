@@ -36,11 +36,11 @@ export default function Home() {
 
                     <button className="btns_principal" id='proyects' onClick={() => navigate("/project")}>Proyectos</button>
                     <button className="btns_principal" id='hours' onClick={() => navigate("/supervisor/hour")}>Horas</button>
-
+                    <button className="btns_principal" id='employees' onClick={() => navigate("/supervisor/employee")}>Empleados</button>
                 </div>            
 
+            <Summary/>
 
-            <Summary employee_id={localStorage.getItem("id_user")} />
             <Footer />
         </div>
     );

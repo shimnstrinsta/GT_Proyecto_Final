@@ -14,8 +14,6 @@ export const hourService = {
         const date_now = new Date();
         const date = `${date_now.getFullYear()}-${String(date_now.getMonth() + 1).padStart(2, '0')}-${String(date_now.getDate()).padStart(2, '0')}`
 
-        console.log(date_now)
-        console.log("Date: "+date)
 
         let diffMs = start - end;
 

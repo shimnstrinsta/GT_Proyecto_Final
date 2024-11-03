@@ -31,4 +31,16 @@ export const projectService = {
 
     },
 
+    getAll: async () => {                
+        return fetch(`http://localhost:3001/summary/project`)
+            .then(response => response.json())
+            .then(projects => {                                
+                return {success: true, projects}
+            })
+            .catch(error => {
+                return { success: false, message: "Error de consultar horas: " + error.message };
+            }
+        );
+    },
+
 }

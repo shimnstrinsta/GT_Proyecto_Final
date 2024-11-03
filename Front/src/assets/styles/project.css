@@ -12,3 +12,11 @@
     width: 100%;
     border-color: #DDDDDD;
 }
+
+#graph_project{
+    margin-left: 20px;    
+}
+
+#insert-project{
+    margin-top: 30px;
+}

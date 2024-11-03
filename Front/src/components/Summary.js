@@ -9,7 +9,8 @@ export default function Summary({employee_id = 0}) {
 
     const [dataDay,setDataDay] = useState("Tu día más productivo es el");
     const [dataActivity,setDataActivity] = useState("Has realizado las siguientes tareas");
-    const [dataProject,setDataProject] = useState("Tu projycto favorito es");    
+    const [dataProject,setDataProject] = useState("Tu proyecto favorito es");    
+
 
 
     const [mostWorkedProject, setProject] = useState("");
@@ -88,11 +89,11 @@ export default function Summary({employee_id = 0}) {
 
                     Array.from(response.projects).forEach(element => {
                         rows_projects.unshift(element.nombre)
-                        rows_hours.unshift(element.totalHoras)
-                        const totalHoras = parseFloat(element.totalHoras);
+                        rows_hours.unshift(element.total_horas)
+                        const totalHoras = parseFloat(element.total_horas);
 
                         if (most.hours < totalHoras) {
-                            most.hours = element.totalHoras
+                            most.hours = element.total_horas
                             most.project = element.nombre
                         }
 

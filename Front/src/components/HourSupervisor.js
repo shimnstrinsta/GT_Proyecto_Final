@@ -15,7 +15,7 @@ import Avatar from '@mui/material/Avatar';
 import "../assets/styles/hour.css"
 
 const columns = [  
-  { id: "photo", label: "Empleado", minWidth: 50 },
+  { id: "photo", label: "Empleado", minWidth: 20 },
   { id: "employeeName", label: "Nombre", minWidth: 100 },
   { id: "employeeLastName", label: "Apellido", minWidth: 100 },
   { id: "project", label: "Proyecto", minWidth: 120 },
@@ -64,7 +64,6 @@ export default function HourSupervisor() {
             const minutosRestantes = (minutos % 60).toString().padStart(2, '0'); 
 
             const total = `${horas}:${minutosRestantes}`
-            console.log(element.empleado.ruta_foto)
             rows_hours.unshift(createData(element.empleado.ruta_foto,element.empleado.nombre,element.empleado.apellido,element.proyecto.nombre, element.fecha, element.hora_inicio_trabajo, element.hora_fin_trabajo, total, element.actividad.nombre, element.descripcion_hora_trabajo))
           });
 

@@ -10,6 +10,8 @@ import UserAccount from '../pages/UserAccount'
 import SupervisorHomePage from '../pages/SupervisorHomePage'
 import SupervisorHourPage from '../pages/SupervisorHourPage'
 import ProjectsPage from '../pages/ProjectsPage'
+import EmployeePage from '../pages/EmployeePage';
+
 
 export default function Routing() {
   return (    
@@ -28,6 +30,9 @@ export default function Routing() {
           <Route exact path="/supervisor/home" element={<SupervisorHomePage />} /> 
           <Route exact path="/supervisor/hour" element={<SupervisorHourPage />} /> 
           <Route exact path="/project" element={<ProjectsPage />} /> 
+
+          <Route exact path="/supervisor/employee" element={<EmployeePage />} /> 
+
           
         </Routes>
     </Router>
